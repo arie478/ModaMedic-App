@@ -9,7 +9,10 @@ export const videos = {
         { id: 'sxWDOHwEvpw', description: 'פיזיותרפיה 2 - כיפוף הצוואר והראש בשכיבה' },
         { id: 'Dqf6M8GyIbQ', description: 'פיזיותרפיה 3 - הטיית הצוואר והראש לאחור' },
     ],
+
 };
+
+
 
 export const videosCategory = [
     'Neck',

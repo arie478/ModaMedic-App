@@ -32,6 +32,8 @@ import {
   TextLinkContent,
 } from '../components/styles';
 import axios from 'axios';
+import {useTranslation} from "react-i18next";
+import i18n from "i18next";
 
 const { brand, darkLight, primary } = Colors;
 
@@ -69,7 +71,7 @@ const Signup = ({ navigation }) => {
         const { message, status, data } = result;
 
         if (status === 200) {
-            Alert.alert('Account Created Successfully', 'Please login')
+            Alert.alert(t('Account successfully created'), t('Please sign in'))
             navigation.goBack();
 
         } else {
@@ -101,13 +103,22 @@ const Signup = ({ navigation }) => {
             });
     };
 
+    /*
+     The useTranslation hook is a custom hook provided by the react-i18next library.
+     It allows you to access the t function in your functional React components.
+
+     The t function is a function that takes a string key and returns the corresponding translation in the current language.
+     It is used to translate strings in your component JSX.
+     */
+    const {t} = useTranslation();
+
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
         <StatusBar style="dark" />
         <InnerContainer>
-          <PageTitle>ModaMedic</PageTitle>
-          <SubTitle>Account Signup</SubTitle>
+          <PageTitle>{t('ModaMedic')}</PageTitle>
+          <SubTitle>{t('Account Registration')}</SubTitle>
 
           <Modal animationType="fade" visible={show} transparent={true}>
             <View
@@ -153,10 +164,10 @@ const Signup = ({ navigation }) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               if (values.First_Name === '' || values.Password === '') {
-                handleMessage('Please fill all the fields');
+                handleMessage(t('Please fill out all of the fields.'));
                 setSubmitting(false);
               } else if (values.Password !== values.confirmPassword) {
-                handleMessage('Password do not match');
+                handleMessage(t('The passwords do not match.'));
                 setSubmitting(false);
               } else {
                 handleSignup(values, setSubmitting);
@@ -166,27 +177,27 @@ const Signup = ({ navigation }) => {
             {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
               <StyledFormArea>
                 <MyTextInput
-                  label="First Name"
+                  label= {t('First Name')}
                   icon="person"
-                  placeholder="John"
+                  placeholder= {t('John')}
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('First_Name')}
                   onBlur={handleBlur('First_Name')}
                   value={values.First_Name}
                 />
                 <MyTextInput
-                  label="Last Name"
+                  label= {t('Last Name')}
                   icon="person"
-                  placeholder="Doe"
+                  placeholder= {t('Doe')}
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('Last_Name')}
                   onBlur={handleBlur('Last_Name')}
                   value={values.Last_Name}
                 />
                 <MyTextInput
-                  label="Email Address"
+                  label= {t('Email Address')}
                   icon="mail"
-                  placeholder="exmple@gmail.com"
+                  placeholder= {t('example@domail.com')}
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('UserID')}
                   onBlur={handleBlur('UserID')}
@@ -194,9 +205,9 @@ const Signup = ({ navigation }) => {
                   keyboardType="email-address"
                 />
                 <MyTextInput
-                  label="Date of Birth"
+                  label= {t('Date of Birth')}
                   icon="calendar"
-                  placeholder="YYYY - MM - DD"
+                  placeholder= {t('YYYY - MM - DD')}
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('BirthDate')}
                   onBlur={handleBlur('BirthDate')}
@@ -206,7 +217,7 @@ const Signup = ({ navigation }) => {
                   showDatePicker={showDatePicker}
                 />
                 <MyTextInput
-                  label="Password"
+                  label= {t('Password')}
                   icon="lock"
                   placeholder="********"
                   placeholderTextColor={darkLight}
@@ -219,7 +230,7 @@ const Signup = ({ navigation }) => {
                   setHidePassword={setHidePassword}
                 />
                 <MyTextInput
-                  label="Confirm Password"
+                  label= {t('Confirm Password')}
                   icon="lock"
                   placeholder="********"
                   placeholderTextColor={darkLight}
@@ -234,7 +245,7 @@ const Signup = ({ navigation }) => {
                 <MsBox type={messageType}>{message}</MsBox>
                 {!isSubmitting && (
                   <StyledButton onPress={handleSubmit}>
-                    <ButtonText>Signup</ButtonText>
+                    <ButtonText> {t('Sign up')}</ButtonText>
                   </StyledButton>
                 )}
                 {isSubmitting && (
@@ -243,10 +254,10 @@ const Signup = ({ navigation }) => {
                   </StyledButton>
                 )}
                 <Line />
-                <ExtraView>
-                  <ExtraText>already have an account?</ExtraText>
+                <ExtraView style={{flexDirection: i18n.language === 'en' || i18n.language === 'ru' ? 'row' : 'row-reverse'}}>
+                  <ExtraText>{t('Do you already have an account?')}</ExtraText>
                   <TextLink onPress={() => navigation.navigate('Login')}>
-                    <TextLinkContent>Login</TextLinkContent>
+                    <TextLinkContent>{" " + t('Sign in here')}</TextLinkContent>
                   </TextLink>
                 </ExtraView>
               </StyledFormArea>

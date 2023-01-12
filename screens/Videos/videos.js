@@ -39,6 +39,7 @@ import {
   Avatar,
   WelcomeContainerHeader,
 } from '../../components/styles';
+import {useTranslation} from "react-i18next";
 
 const { brand, darkLight, primary } = Colors;
 
@@ -82,10 +83,19 @@ const Videos = ({ route }) => {
     </View>
   );
 
+  /*
+    The useTranslation hook is a custom hook provided by the react-i18next library.
+    It allows you to access the t function in your functional React components.
+
+    The t function is a function that takes a string key and returns the corresponding translation in the current language.
+    It is used to translate strings in your component JSX.
+    */
+  const {t} = useTranslation();
+
   return (
     <>
       <PageTitle style={{ marginTop: 50 }} welcome={true}>
-        Home Video Exercise
+        {t("Exercise with home videos")}
       </PageTitle>
       <SubTitle style={{ textAlign: 'center' }}>{categoryName}</SubTitle>
       <ScrollView>
