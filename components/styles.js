@@ -154,15 +154,16 @@ export const StyledButton = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 5px;
   margin-vertical: 5px;
-  height: 60px;
+  height: 50px;
   align-items: center;
 
   ${(props) =>
     props.google == true &&
     `
-    background-color: ${green};
+    background-color: ${red};
     flex-direction: row;
     justify-content: center;
+    padding: 0px;
   `}
 
   ${(props) =>

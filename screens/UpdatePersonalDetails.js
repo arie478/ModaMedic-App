@@ -37,6 +37,7 @@ import { Picker } from '@react-native-picker/picker';
 import { CredentialsContext } from '../components/CredentialsContext';
 
 import ENV from "../environment";
+import {useTranslation} from "react-i18next";
 
 const { brand, darkLight, primary } = Colors;
 
@@ -46,11 +47,11 @@ const UpdatePersonalDetails = ({ navigation }) => {
   const [date, setDate] = useState(new Date(2000, 0, 1));
   const [dob, setDob] = useState();
   const [showSmoke, setShowSmoke] = useState(false);
-  const [selectedSmoke, setSelectedSmoke] = useState('Non Smoker');
+  const [selectedSmoke, setSelectedSmoke] = useState("");
   const [showGender, setShowGender] = useState(false);
-  const [selectedGender, setSelectedGender] = useState('Female');
+  const [selectedGender, setSelectedGender] = useState('');
   const [showAcademicStatus, setShowAcademicStatus] = useState(false);
-  const [selectedAcademicStatus, setSelectedAcademicStatus] = useState('Academic');
+  const [selectedAcademicStatus, setSelectedAcademicStatus] = useState('');
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 	const { storedCredentials } = useContext(CredentialsContext);
@@ -87,18 +88,24 @@ const UpdatePersonalDetails = ({ navigation }) => {
     handleMessage(null);
     const url = ENV.API_URL.personalDetalis; //Todo change to
     const headers = {  'x-auth-token': storedCredentials.token };
-    data = {...data, "Gender": selectedGender, "Smoke": selectedSmoke, "Education": selectedAcademicStatus}
+    data = {
+      ...data,
+      "Gender": t(selectedGender, { lng: 'en' }),
+      "Smoke": t(selectedSmoke, { lng: 'en' }),
+      "Education": t(selectedAcademicStatus, { lng: 'en' }),
+    }
     axios
       .post(url, data, {headers: headers})
       .then((response) => {
-        Alert.alert("Update Successfully")
+        console.log(response.data);
+        Alert.alert(t("Personal Information successfully updated"))
         setSubmitting(false);
         navigation.goBack();
       })
       .catch((error) => {
         console.log('error', error);
         setSubmitting(false);
-        handleMessage('An error occurred. Check your network');
+        handleMessage(t("Something went wrong. Please try again later."));
       });
   };
 
@@ -106,9 +113,19 @@ const UpdatePersonalDetails = ({ navigation }) => {
     setMessage(message);
     setMessageType(type);
   };
+
+  /*
+    The useTranslation hook is a custom hook provided by the react-i18next library.
+    It allows you to access the t function in your functional React components.
+
+    The t function is a function that takes a string key and returns the corresponding translation in the current language.
+    It is used to translate strings in your component JSX.
+    */
+  const {t} = useTranslation();
+
   return (
     <ScrollView>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <InnerContainer>
         <Modal animationType="fade" visible={show} transparent={true}>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(1,1,1,0.3)' }}>
@@ -134,11 +151,11 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 selectedValue={selectedSmoke}
                 onValueChange={(itemValue, itemIndex) => setSelectedSmoke(itemValue)}
               >
-                <Picker.Item label="Smoker" value="Smoker" />
-                <Picker.Item label="Non Smoker" value="Non Smoker" />
+                <Picker.Item label={t('I smoke')} value={t('I smoke')} />
+                <Picker.Item label={t("I don't smoke")} value={t("I don't smoke")} />
               </Picker>
               <View style={{ width: 330 }}>
-                <Button color={'black'} title={'Choose Status'} onPress={() => setShowSmoke(false)} />
+                <Button color={'black'} title={t('Select status')} onPress={() => setShowSmoke(false)} />
               </View>
             </View>
           </View>
@@ -150,11 +167,11 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 selectedValue={selectedGender}
                 onValueChange={(itemValue, itemIndex) => setSelectedGender(itemValue)}
               >
-                <Picker.Item label="Male" value="Male" />
-                <Picker.Item label="Female" value="Female" />
+                <Picker.Item label={t("Male")} value={t("Male")} />
+                <Picker.Item label={t("Female")} value={t("Female")} />
               </Picker>
               <View style={{ width: 330 }}>
-                <Button color={'black'} title={'Choose Gender'} onPress={() => setShowGender(false)} />
+                <Button color={'black'} title={t("Select biological sex")} onPress={() => setShowGender(false)} />
               </View>
             </View>
           </View>
@@ -166,21 +183,21 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 selectedValue={selectedAcademicStatus}
                 onValueChange={(itemValue, itemIndex) => setSelectedAcademicStatus(itemValue)}
               >
-                <Picker.Item label="Academic" value="Academic" />
-                <Picker.Item label="High-School" value="High-School" />
-                <Picker.Item label="10-12 school years" value="10-12 school years" />
-                <Picker.Item label="6-9 school years" value="6-9 school years" />
-                <Picker.Item label="5 school years or less" value="5 school years or less" />
-                <Picker.Item label="Not interested to share" value="Not interested to share" />
+                <Picker.Item label={t("Academic")} value={t("Academic")} />
+                <Picker.Item label={t("High-School")} value={t("High-School")} />
+                <Picker.Item label={t("Between 10 to 12 years of formal education")} value={t("Between 10 to 12 years of formal education")} />
+                <Picker.Item label={t("Between 6 to 9 years of formal education")} value={t("Between 6 to 9 years of formal education")} />
+                <Picker.Item label={t("5 or less years of formal education")} value={t("5 or less years of formal education")} />
+                <Picker.Item label={t("I would rather not disclose")} value={t("I would rather not disclose")} />
               </Picker>
               <View style={{ width: 330 }}>
-                <Button color={'black'} title={'Choose Academic Status'} onPress={() => setShowAcademicStatus(false)} />
+                <Button color={'black'} title={t("Select your education level")} onPress={() => setShowAcademicStatus(false)} />
               </View>
             </View>
           </View>
         </Modal>
         <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')} />
-        <PageTitle welcome={true}>Update Personal Details</PageTitle>
+        <PageTitle welcome={true}>{t('Update Personal Information')}</PageTitle>
 
         <Formik
           initialValues={{
@@ -216,7 +233,7 @@ const UpdatePersonalDetails = ({ navigation }) => {
           {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
             <StyledFormArea>
               <MyTextInput
-                label="Date of Birth"
+                label={t("Date of Birth")}
                 icon="calendar"
                 placeholder="YYYY - MM - DD" //TODO get personal birth date from server
                 placeholderTextColor={darkLight}
@@ -228,9 +245,9 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 showDatePicker={showDatePicker}
               />
               <MyTextInput
-                label="Smoking Status"
+                label= {t('Smoking Habits')}
                 icon="person"
-                placeholder="John Doe "
+                placeholder={t("I don't smoke")}
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('Smoke')}
                 onBlur={handleBlur('Smoke')}
@@ -239,9 +256,9 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 showPicker={showSmokePicker}
               />
               <MyTextInput
-                label="Gender"
+                label={t("Biological sex")}
                 icon="person"
-                placeholder="John Doe "
+                placeholder={t("Male")}
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('Gender')}
                 onBlur={handleBlur('Gender')}
@@ -250,9 +267,9 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 showPicker={showGenderPicker}
               />
               <MyTextInput
-                label="Education"
+                label={t("Education level")}
                 icon="person"
-                placeholder="John Doe "
+                placeholder={t("Academic")}
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('Education')}
                 onBlur={handleBlur('Education')}
@@ -261,7 +278,7 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 showPicker={showAcademicStatusPicker}
               />
               <MyTextInput
-                label="Height (cm)"
+                label={t("Height(cm)")}
                 icon="person"
                 placeholder="175"
                 placeholderTextColor={darkLight}
@@ -270,7 +287,7 @@ const UpdatePersonalDetails = ({ navigation }) => {
                 value={values.Height}
               />
               <MyTextInput
-                label="Weight (kg)"
+                label={t("Weight(kg)")}
                 icon="person"
                 placeholder="75"
                 placeholderTextColor={darkLight}
@@ -282,7 +299,7 @@ const UpdatePersonalDetails = ({ navigation }) => {
               <MsBox type={messageType}>{message}</MsBox>
               {!isSubmitting && (
                 <StyledButton onPress={handleSubmit}>
-                  <ButtonText>Update</ButtonText>
+                  <ButtonText>{t("Update information")}</ButtonText>
                 </StyledButton>
               )}
               {isSubmitting && (

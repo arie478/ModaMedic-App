@@ -31,6 +31,8 @@ import {
   ExtraText,
   TextLinkContent,
 } from '../components/styles';
+import {useTranslation} from "react-i18next";
+import i18n from "i18next";
 
 const { brand, darkLight, primary } = Colors;
 
@@ -60,7 +62,7 @@ const Login = ({ navigation }) => {
       .catch((error) => {
         console.log('error', error);
         setSubmitting(false);
-        handleMessage('An error occurred. Check your network');
+        handleMessage(t('Something went wrong. Please try again later.'));
       });
   };
 
@@ -84,6 +86,15 @@ const Login = ({ navigation }) => {
       });
   };
 
+    /*
+      The useTranslation hook is a custom hook provided by the react-i18next library.
+      It allows you to access the t function in your functional React components.
+
+      The t function is a function that takes a string key and returns the corresponding translation in the current language.
+      It is used to translate strings in your component JSX.
+      */
+    const {t} = useTranslation();
+
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -96,7 +107,7 @@ const Login = ({ navigation }) => {
             initialValues={{ UserID: '', Password: '' }}
             onSubmit={(values, { setSubmitting }) => {
               if (values.UserID === '' || values.Password === '') {
-                handleMessage('Please fill all the fields');
+                handleMessage(t('Please fill out all of the fields.'));
                 setSubmitting(false);
               } else {
                 handleLogin(values, setSubmitting);
@@ -106,9 +117,9 @@ const Login = ({ navigation }) => {
             {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
               <StyledFormArea style={{ marginTop: 50 }}>
                 <MyTextInput
-                  label="Email Address"
+                  label= {t('Email Address')}
                   icon="mail"
-                  placeholder="exmple@gmail.com"
+                  placeholder= {t('example@domain.com')}
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('UserID')}
                   onBlur={handleBlur('UserID')}
@@ -117,7 +128,7 @@ const Login = ({ navigation }) => {
                 />
 
                 <MyTextInput
-                  label="Password"
+                  label= {t('Password')}
                   icon="lock"
                   placeholder="********"
                   placeholderTextColor={darkLight}
@@ -132,7 +143,7 @@ const Login = ({ navigation }) => {
                 <MsBox type={messageType}>{message}</MsBox>
                 {!isSubmitting && (
                   <StyledButton onPress={handleSubmit}>
-                    <ButtonText>Login</ButtonText>
+                    <ButtonText> {t('Log in')}</ButtonText>
                   </StyledButton>
                 )}
 
@@ -144,10 +155,10 @@ const Login = ({ navigation }) => {
 
                 <Line />
  
-                <ExtraView>
-                  <ExtraText>Don't have an account already?</ExtraText>
+                <ExtraView  style={{flexDirection: i18n.language === 'en' || i18n.language === 'ru' ? 'row' : 'row-reverse'}}>
+                  <ExtraText >{t("Don't have an account yet?")}</ExtraText>
                   <TextLink onPress={() => navigation.navigate('Signup')}>
-                    <TextLinkContent>Signup</TextLinkContent>
+                    <TextLinkContent >{" " + t("Register here")}</TextLinkContent>
                   </TextLink>
                 </ExtraView>
               </StyledFormArea>
