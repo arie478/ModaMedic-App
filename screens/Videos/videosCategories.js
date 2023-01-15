@@ -70,8 +70,8 @@ const VideosCategories = ({ navigation }) => {
           {videosCategory.map((categoryName, index) => (
             <StyledButton
               key={index}
-              //onPress={() => navigation.navigate('Neck',  categoryName )}
-              onPress={() => Alert.alert("This feature will be available in the next update!")}
+              onPress={() => navigation.navigate('Neck',  categoryName )}
+              // onPress={() => Alert.alert("This feature will be available in the next update!")}
               home={true}
             >
               <ButtonText welcome={true}>{categoryName}</ButtonText>
