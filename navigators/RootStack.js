@@ -10,6 +10,7 @@ import { CredentialsContext } from '../components/CredentialsContext';
 import VideosCategories from '../screens/Videos/videosCategories';
 import Videos from '../screens/Videos/videos';
 import UpdatePersonalDetails from '../screens/UpdatePersonalDetails';
+import BodyPartSelection from "../screens/BodyPartSelection";
 import DailyQuestion, {
 	DailyQuestionMedication,
 	LifeQuality1,
@@ -42,6 +43,7 @@ const RootStack = () => {
 						initalRouteName="Login">
 						{storedCredentials ? (
 							<>
+								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
 								<Stack.Screen name="Welcome" component={Welcome} />
 								<Stack.Screen name="PersonalDetails" component={PersonalDetails} />
 								<Stack.Screen name="UpdatePersonalDetails" component={UpdatePersonalDetails} />
