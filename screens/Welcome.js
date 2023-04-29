@@ -55,12 +55,14 @@ const googleFitScopes = [
 	'https://www.googleapis.com/auth/fitness.sleep.read',
 ];
 
-const expoClientId = '378094607252-i9tph8hef6r12felmk5h8ahidfrs4jng.apps.googleusercontent.com';
+//const expoClientId = '378094607252-i9tph8hef6r12felmk5h8ahidfrs4jng.apps.googleusercontent.com';
 //const androidClientId = '378094607252-v6ti9l876903jmhm2r26pq75mno7lup6.apps.googleusercontent.com';
 //const androidClientId = '189537036704-md50o9udl7hf3c6v2cebspfo7gbh2gqn.apps.googleusercontent.com';
-//2023 code
-const androidClientId = '650783445616-200poaol2ps97e6osdhe0do09th71pcu.apps.googleusercontent.com';
 
+//2023 code
+const expoClientId ='650783445616-8hhnbqa0qs0cldn94sbmhdmfu54qpcr6.apps.googleusercontent.com';
+const androidClientId = '650783445616-200poaol2ps97e6osdhe0do09th71pcu.apps.googleusercontent.com';
+const iosClientId = '650783445616-2a1qdir2snhv5r508sj84e2ulb96j1tb.apps.googleusercontent.com';
 
 const getStepsCount = async (token, userToken) => {
 	const dataSource = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
@@ -168,6 +170,7 @@ const Welcome = ({ navigation }) => {
 	const [request, response, promptAsync] = Google.useAuthRequest({
 		expoClientId: expoClientId,
 		androidClientId: androidClientId,
+		iosClientId: iosClientId,
 		scopes: googleFitScopes,
 	});
 

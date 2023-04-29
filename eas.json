@@ -1,32 +1,19 @@
 {
-  "cli": {
+  "cli":
+  {
     "version": ">= 0.52.0"
   },
-  "build": {
-    "development": {
+  "build":
+  {
+    "development":
+    {
       "developmentClient": true,
       "distribution": "internal"
     },
-    "preview": {
+    "preview":
+    {
       "distribution": "internal"
     },
     "production": {}
-  },
-  "submit": {
-    "production": {}
-  },
-  "update": {
-    "development": {
-      "branch": "main",
-      "message": "Development update"
-    },
-    "preview": {
-      "branch": "preview",
-      "message": "Preview update"
-    },
-    "production": {
-      "branch": "production",
-      "message": "Production update"
-    }
   }
 }
