@@ -14,5 +14,19 @@
   },
   "submit": {
     "production": {}
+  },
+  "update": {
+    "development": {
+      "branch": "main",
+      "message": "Development update"
+    },
+    "preview": {
+      "branch": "preview",
+      "message": "Preview update"
+    },
+    "production": {
+      "branch": "production",
+      "message": "Production update"
+    }
   }
 }

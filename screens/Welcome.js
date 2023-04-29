@@ -57,7 +57,9 @@ const googleFitScopes = [
 
 const expoClientId = '378094607252-i9tph8hef6r12felmk5h8ahidfrs4jng.apps.googleusercontent.com';
 //const androidClientId = '378094607252-v6ti9l876903jmhm2r26pq75mno7lup6.apps.googleusercontent.com';
-const androidClientId = '189537036704-md50o9udl7hf3c6v2cebspfo7gbh2gqn.apps.googleusercontent.com';
+//const androidClientId = '189537036704-md50o9udl7hf3c6v2cebspfo7gbh2gqn.apps.googleusercontent.com';
+//2023 code
+const androidClientId = '650783445616-200poaol2ps97e6osdhe0do09th71pcu.apps.googleusercontent.com';
 
 
 const getStepsCount = async (token, userToken) => {

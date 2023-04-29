@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "moda-app-react-native",
+    "name": "ModaMedic App",
     "scheme": "modaappreactnative",
-    "slug": "moda-app-react-native",
+    "slug": "moda-medic-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
