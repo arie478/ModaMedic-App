@@ -37,6 +37,7 @@
     "react-dom": "18.2.0",
     "react-i18next": "^12.1.1",
     "react-native": "0.71.7",
+    "react-native-body-highlighter": "^2.1.4",
     "react-native-cards": "^1.1.4",
     "react-native-cardview": "^2.0.5",
     "react-native-elements": "^3.4.2",
@@ -52,7 +53,8 @@
     "react-native-web-webview": "^1.0.2",
     "react-native-webview": "11.26.0",
     "react-native-youtube-iframe": "^2.2.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "expo-notifications": "~0.18.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

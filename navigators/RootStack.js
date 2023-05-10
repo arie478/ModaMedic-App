@@ -43,7 +43,6 @@ const RootStack = () => {
 						initalRouteName="Login">
 						{storedCredentials ? (
 							<>
-								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
 								<Stack.Screen name="Welcome" component={Welcome} />
 								<Stack.Screen name="PersonalDetails" component={PersonalDetails} />
 								<Stack.Screen name="UpdatePersonalDetails" component={UpdatePersonalDetails} />
@@ -61,6 +60,7 @@ const RootStack = () => {
 						) : (
 							<>
 								<Stack.Screen name="Login" component={Login} />
+								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
 								<Stack.Screen name="Signup" component={Signup} />
 							</>
 						)}

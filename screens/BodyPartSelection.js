@@ -47,151 +47,16 @@ import Header from "react-native/Libraries/NewAppScreen/components/Header";
 
 import componentProviderInstrumentationHook from "react-native-web/dist/exports/AppRegistry";
 
+//Imports for body highlight selection
+import {StyleSheet, TouchableOpacity } from 'react-native';
+import Body from 'react-native-body-highlighter';
+import SelectedPartsContext from '../components/SelectedPartsContext';
+
+
 const { brand, darkLight, primary } = Colors;
 
-const googleFitScopes = [
-	'https://www.googleapis.com/auth/fitness.activity.read',
-	'https://www.googleapis.com/auth/fitness.location.read',
-	'https://www.googleapis.com/auth/fitness.sleep.read',
-];
 
-const expoClientId = '378094607252-i9tph8hef6r12felmk5h8ahidfrs4jng.apps.googleusercontent.com';
-//const androidClientId = '378094607252-v6ti9l876903jmhm2r26pq75mno7lup6.apps.googleusercontent.com';
-const androidClientId = '189537036704-md50o9udl7hf3c6v2cebspfo7gbh2gqn.apps.googleusercontent.com';
-
-
-const getStepsCount = async (token, userToken) => {
-	const dataSource = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
-	const uri = backendPaths.API_URL.metrics + '/steps';
-	const data = await getFitData(token, dataSource);
-	const points = data.point;
-	const headers = { 'x-auth-token': userToken };
-	const values = points.map(point => point.value.map(v => v.intVal));
-	const stepsCount = values.reduce((previousValue, currentValue) => previousValue + Number(currentValue), 0);
-	const dataToSend = {
-		ValidTime: Date.now().valueOf(),
-		Data: stepsCount,
-	};
-	await axios.post(uri, dataToSend, { headers: headers });
-};
-
-const getDistanceCount = async (token, userToken) => {
-	const dataSource = 'derived:com.google.distance.delta:com.google.android.gms:merge_distance_delta';
-	const uri = backendPaths.API_URL.metrics + '/distance';
-	const data = await getFitData(token, dataSource);
-	const values = data.point.map(point => point.value.map(v => v.fpVal));
-
-	const distanceCount = values.reduce((previousValue, currentValue) => previousValue + Number(currentValue), 0);
-
-	const headers = { 'x-auth-token': userToken };
-	const dataToSend = {
-		ValidTime: Date.now().valueOf(),
-		Data: distanceCount,
-	};
-	await axios.post(uri, dataToSend, { headers: headers });
-};
-
-const getCaloriesCount = async (token, userToken) => {
-	const dataSource = 'derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended';
-	const uri = backendPaths.API_URL.metrics + '/calories';
-	const data = await getFitData(token, dataSource);
-	const values = data.point.map(point => point.value.map(v => v.fpVal));
-	const caloriesCount = values.reduce((previousValue, currentValue) => previousValue + Number(currentValue), 0);
-
-	const headers = { 'x-auth-token': userToken };
-	const dataToSend = {
-		ValidTime: Date.now().valueOf(),
-		Data: caloriesCount,
-	};
-	await axios.post(uri, dataToSend, { headers: headers });
-};
-
-const getSleepCount = async (token, userToken) => {
-	const dataSource = 'derived:com.google.sleep.segment:com.google.android.gms:merged';
-	const uri = backendPaths.API_URL.metrics + '/sleep';
-	const data = await getFitData(token, dataSource);
-	const headers = { 'x-auth-token': userToken };
-	const item = { StartTime: 0, EndTime: 0, State: '' };
-	const dataToSend = {
-		ValidTime: Date.now().valueOf(),
-		Data: [],
-	};
-	await axios.post(uri, dataToSend, { headers: headers });
-};
-
-const getActivityCount = async (token, userToken) => {
-	const dataSource = 'derived:com.google.activity.segment:com.google.android.gms:merge_activity_segments';
-	const uri = backendPaths.API_URL.metrics + '/activity';
-
-	const data = await getFitData(token, dataSource);
-	const headers = { 'x-auth-token': userToken };
-	const item = { StartTime: 0, EndTime: 0, State: '' };
-	const dataToSend = {
-		ValidTime: Date.now().valueOf(),
-		Data: [],
-	};
-	await axios.post(uri, dataToSend, { headers: headers });
-};
-
-const getFitData = async (token, dataSource) => {
-	const getConfig = { headers: { Authorization: `Bearer ${token}` } };
-	const datePadding = '000000000';
-
-	const dateNowAsNumber = (Date.now().valueOf() / 1000).toFixed(0);
-	const dateNowAsString = String(dateNowAsNumber) + datePadding;
-
-	const lastYearAsNumber = (moment().subtract(1, 'day').valueOf() / 1000).toFixed(0);
-	const lastYearAsString = String(lastYearAsNumber) + datePadding;
-
-	const getStepsUri = `https://fitness.googleapis.com/fitness/v1/users/me/dataSources/${dataSource}/datasets/${dateNowAsString}-${lastYearAsString}`;
-
-	const result = await axios.get(getStepsUri, getConfig);
-	return result.data;
-};
-
-const addDocToDatabase = async (collection, data) => {
-	const databaseUri = '';
-
-	const result = await axios.post(databaseUri);
-};
-
-
-
-const Welcome = ({ navigation }) => {
-	// const [storedCredentials, setStoredCredentials] = useContext(CredentialsContext);
-	const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
-	// console.log("storedCredentials", storedCredentials);
-	const { name } = storedCredentials;
-	const { First_Name } = storedCredentials;
-	const [request, response, promptAsync] = Google.useAuthRequest({
-		expoClientId: expoClientId,
-		androidClientId: androidClientId,
-		scopes: googleFitScopes,
-	});
-
-	const accessToken = response?.authentication?.accessToken;
-
-	useEffect(() => {
-		const accessToken = response?.authentication?.accessToken;
-		if (accessToken) {
-			getStepsCount(accessToken, storedCredentials.token);
-			getActivityCount(accessToken, storedCredentials.token);
-			getCaloriesCount(accessToken, storedCredentials.token);
-			getDistanceCount(accessToken, storedCredentials.token);
-			getSleepCount(accessToken, storedCredentials.token);
-		}
-
-	}, [response]);
-
-
-	const clearLogin = () => {
-		AsyncStorage.removeItem('loginCredentials')
-			.then(() => {
-				setStoredCredentials('');
-			})
-			.catch(error => console.log(error));
-	};
-
+const BodyPartSelection = ({ navigation }) => {
 
 	/*
 	The useTranslation hook is a custom hook provided by the react-i18next library.
@@ -206,79 +71,168 @@ const Welcome = ({ navigation }) => {
 	*/
 	const {t, i18n} = useTranslation();
 
+	const [selectedParts, setSelectedParts] = useContext(SelectedPartsContext);
 
-
-	/**
-	 * Changes the language of the app and stores the new language in AsyncStorage.
-	 * @param {string} value - The language code to switch to.
-	 */
 	/*
-	This function takes a string parameter value which is the language code to switch to.
-	It uses the changeLanguage function of the i18n instance to change the language,
-	and stores the new language in AsyncStorage using the storeLanguage function.
-	If an error occurs, it logs the error to the console.
-	*/
-	const changeLanguage = value => {
-		i18n
-			.changeLanguage(value)
-			.then(() => storeLanguage(value))
-			.catch(err => console.log(err));
+	This function takes in a body part object that contains a 'slug' property as a parameter.
+	It checks whether this body part is already present in the selectedParts array.
+	If it is, it removes the body part from the array. Otherwise, it adds the body part to the array.
+	The 'selectedParts' state is updated using the 'setSelectedParts' function, which is a React Hook.
+
+	The function does not return anything;
+	Instead, it updates the state of the component that calls it,
+	So that the selected parts can be used in other parts of the component or passed down to child components as props.
+	 */
+	const handlePartPress = (part) => {
+		if (selectedParts.includes(part.slug)) {
+			setSelectedParts(selectedParts.filter((partName) => partName !== part.slug));
+		} else {
+			setSelectedParts([...selectedParts, part.slug]);
+		}
 	};
 
-	/**
-	 * Stores the given language code in AsyncStorage.
-	 * @param {string} value - The language code to store.
-	 */
+
+	//Defines the body zones groups and what body parts are a part of the whole group
+	const groups = {
+		head: ['head', 'neck'],
+		chest: ['chest'],
+		back: ['trapezius', 'upper-back', 'lower-back'],
+		arms: ['biceps', 'triceps', 'forearm', 'front-deltoids'],
+		abs: ['abs', 'obliques'],
+		legs: ['adductor', 'hamstring', 'quadriceps', 'abductors', 'calves', 'gluteal', 'knees']
+	};
+
 	/*
-	This function takes a string parameter value which is the language code to store.
-	It uses the setItem function of AsyncStorage to store the language code in AsyncStorage.
-	If an error occurs, it catches the error and does nothing.
+	This function takes a slug as a parameter and returns an intensity level based on whether
+	The given body part is selected or not.
+	The function first looks up the group that the given slug belongs to by using the groups object.
+	If the group doesn't exist in groups, the function returns 1 as the default intensity.
+	If the group does exist, the function checks if any of the body parts in the group
+	Are included in the selectedParts array by using the some method.
+	If at least one body part in the group is selected, the function returns an intensity level of 1,
+	Indicating that the body part is being targeted for exercise.
+	If none of the body parts in the group are selected, the function returns an intensity level of 2,
+	Indicating that the body part is not being targeted but should still be exercised to maintain balance and avoid muscle imbalances.
 	 */
-	const storeLanguage = async (value) => {
-		try {
-			await AsyncStorage.setItem('storedLanguage', value)
-		} catch (e) {
-			// saving error
-		}
-	}
+	const getIntensity = (slug) => {
+		const group = groups[slug];
+		if (!group) return 1;
+		return group.some((part) => selectedParts.includes(part)) ? 1 : 2;
+	};
+
+
+
+	const renderBody = () => {
+			//Data for group selection where multiple parts are selected as a "whole" body part (like legs)
+			const data = [
+				//Head
+				{ slug: 'head', intensity: getIntensity('head') },
+				{ slug: 'neck', intensity: getIntensity('head') },
+
+				//Chest
+				{ slug: 'chest', intensity: getIntensity('chest') },
+
+				//Back
+				{ slug: 'trapezius', intensity: getIntensity('back') },
+				{ slug: 'upper-back', intensity: getIntensity('back') },
+				{ slug: 'lower-back', intensity: getIntensity('back') },
+
+				//Arms
+				{ slug: 'biceps', intensity: getIntensity('arms') },
+				{ slug: 'triceps', intensity: getIntensity('arms') },
+				{ slug: 'forearm', intensity: getIntensity('arms') },
+				{ slug: 'front-deltoids', intensity: getIntensity('arms') },
+
+				//Abs
+				{ slug: 'abs', intensity: getIntensity('abs') },
+				{ slug: 'obliques', intensity: getIntensity('abs') },
+
+				//Legs
+				{ slug: 'adductor', intensity: getIntensity('legs') },
+				{ slug: 'hamstring', intensity: getIntensity('legs') },
+				{ slug: 'quadriceps', intensity: getIntensity('legs') },
+				{ slug: 'abductors', intensity: getIntensity('legs') },
+				{ slug: 'calves', intensity: getIntensity('legs') },
+				{ slug: 'gluteal', intensity: getIntensity('legs') },
+				{ slug: 'knees', intensity: getIntensity('legs') }
+
+			]
+			//Data for body parts where each sub body part is being able to be selected by its own
+			// const data = [
+			// 	//Head
+			// 	{ slug: 'head', intensity: selectedParts.includes('head') ? 1 : 2 },
+			// 	{ slug: 'neck', intensity: selectedParts.includes('neck') ? 1 : 2 },
+			//
+			// 	// Chest
+			// 	{ slug: 'chest', intensity: selectedParts.includes('chest') ? 1 : 2 },
+			//
+			// 	// Back
+			// 	//trapezius
+			// 	//upper-back
+			// 	//lower-back
+			//
+			// 	// Arms
+			// 	{ slug: 'biceps', intensity: selectedParts.includes('biceps') ? 1 : 2 },
+			// 	{ slug: 'triceps', intensity: selectedParts.includes('triceps') ? 1 : 2 },
+			// 	{ slug: 'forearm', intensity: selectedParts.includes('forearm') ? 1 : 2 },
+			// 	{ slug: 'front-deltoids', intensity: selectedParts.includes('front-deltoids') ? 1 : 2 },
+			//
+			// 	// Abs
+			// 	{ slug: 'abs', intensity: selectedParts.includes('abs') ? 1 : 2 },
+			// 	{ slug: 'obliques', intensity: selectedParts.includes('obliques') ? 1 : 2 },
+			//
+			// 	// Legs
+			// 	//adductor
+			// 	//hamstring
+			// 	{ slug: 'quadriceps', intensity: selectedParts.includes('quadriceps') ? 1 : 2 },
+			// 	{ slug: 'abductors', intensity: selectedParts.includes('abductors') ? 1 : 2 },
+			// 	{ slug: 'calves', intensity: selectedParts.includes('calves') ? 1 : 2 },
+			// 	//gluteal
+			// 	{ slug: 'knees', intensity: selectedParts.includes('knees') ? 1 : 2 },
+			// ];
+
+
+		return (
+			<View style={{
+				flex: 0,
+				backgroundColor: 'transparent',
+				alignItems: 'center',
+				justifyContent: 'space-evenly',
+				position: "relative",
+			}}>
+				{/*
+				data is an array of objects that define the different parts of the body,
+				Their slug (short identifier), and their intensity.
+				The intensity value is determined based on whether the part is selected or not.
+				colors is an array of two colors that define the gradient color scheme of the muscle parts.
+				frontOnly is a boolean prop that determines whether to display the front side of the body only.
+				onMusclePress is a callback function that is called when a muscle part is pressed.
+				It takes the slug of the pressed part as an argument.
+				zoomOnPress is a boolean prop that determines whether to zoom in on a pressed muscle part or not.
+				scale is a number prop that determines the scale of the body model.
+				When a user presses a muscle part, the handlePartPress function is called with the slug of the pressed part as an argument.
+				This function updates the selectedParts state by adding or removing the pressed part depending on
+				Whether it is already in the array or not.
+				*/
+				}
+				<Body
+					data={data}
+					//colors={['#0984e3', '#74b9ff']}
+					colors={['#137079', '#54a79d']}
+					frontOnly={true}
+					onMusclePress={handlePartPress}
+					zoomOnPress={false}
+					scale = {3.3}
+				/>
+			</View>
+		);
+	};
+
 
 		return (
 		<>
 			<StatusBar style="dark" />
 			<InnerContainer>
-				<WelcomeContainerHeader
-					style={{
-						flex: 0,
-						backgroundColor: 'transparent',
-						alignItems: 'center',
-						justifyContent: 'space-evenly',
-						paddingTop: 80
-					}}>
-					<SwitchSelector
-						//initial={i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}
-						initial={0}
-
-						value = {i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}
-
-						onPress={selectedLanguage => changeLanguage(selectedLanguage)}
-
-						textColor= '#9370db'
-						selectedColor= '#f8f8ff'
-						buttonColor= '#9370db'
-						borderColor= '#9370db'
-						backgroundColor = '#f8f8ff'
-						borderRadius = {50}
-						hasPadding
-
-						options={[
-							{ label: "English", value: "en",  },
-							{ label: "עברית", value: "he", },
-							{ label: "Русский", value: "ru",  },
-							{ label: "عربي", value: "ar",  }
-						]}
-					/>
-
-				</WelcomeContainerHeader>
 				{/*<WelcomeImage resizeMode="contain" source={require('../assets/man.jpg')} />*/}
 
 				{/*Have the selection picker for the translation*/}
@@ -288,63 +242,38 @@ const Welcome = ({ navigation }) => {
 						backgroundColor: 'transparent',
 						alignItems: 'center',
 						justifyContent: 'space-evenly',
-						position: "relative"
+						position: "relative",
+						paddingTop: 50 // or marginTop: 50, adjust the value as needed
 					}}>
-					<PageTitle welcome={true}>{t('Welcome')}</PageTitle>
-					<SubTitle welcome={true}>{name || First_Name || 'Hello User'}</SubTitle>
+					<PageTitle style={{ fontSize: 20 }}>{t('Select your problematic areas')}</PageTitle>
 				</View>
 
-				<WelcomeContainer
-					>
+				<View>
+					{renderBody()}
+				</View>
 
-					{/*<Avatar welcomeLeftIcon={true} source={require('../assets/notif_icon.png')} />*/}
-					<StyledFormArea
-					>
-						{/*<Avatar resizeMode="cover" source={require('../assets/new_body.png')} />*/}
-						<SubTitle welcomeHeader={true}>{t('Surgery Date')}: 29/11/2022</SubTitle>
+				<WelcomeContainer>
+					<StyledFormArea>
+						<StyledButton  onPress={() => navigation.navigate('Welcome')}>
+							<ButtonText >{t('Select')}</ButtonText>
+							{/*<Fontisto name="person" color={primary} size={15} />*/}
+						</StyledButton>
 
-						<StyledButton welcome={true} onPress={() => navigation.navigate('DailyQuestion')}>
-							<ButtonText welcome={true}>{t('Daily Questionnaires')}</ButtonText>
-							<Fontisto name="table-1" color={primary} size={15} />
-						</StyledButton>
-						<StyledButton welcome={true} onPress={() => navigation.navigate('LifeQuality1')}>
-							<ButtonText welcome={true}>{t('Life Quality Questionnaires')}</ButtonText>
-							<Fontisto name="table-1" color={primary} size={15} />
-						</StyledButton>
-						<StyledButton onPress={() => navigation.navigate('HomeVideoExercise')} welcome={true}>
-							<ButtonText welcome={true}>{t('Exercise with home videos')}</ButtonText>
-
-							<Fontisto name="youtube-play" color={primary} size={15} />
-						</StyledButton>
-						<StyledButton welcome={true} onPress={() => navigation.navigate('PersonalDetails')}>
-							<ButtonText welcome={true}>{t('Personal Information')}</ButtonText>
-							<Fontisto name="person" color={primary} size={15} />
-						</StyledButton>
-						<StyledButton
-
-							disabled={accessToken}
-							style={accessToken && { backgroundColor: 'gray'}}
-							google={true}
-							onPress={() => promptAsync({ showInRecents: true })}>
-							<Fontisto name="google" color={primary} size={15}    />
-							<ButtonText   google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
-						</StyledButton>
-						<Line />
-						<StyledButton onPress={clearLogin}>
-							<ButtonText >{t('Log out')}</ButtonText>
-						</StyledButton>
 					</StyledFormArea>
-
-
-
-
 				</WelcomeContainer>
-
-
-
 			</InnerContainer>
 		</>
 	);
 };
 
-export default Welcome;
+
+const styles = StyleSheet.create({
+	bodyContainer: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: 500
+	},
+});
+
+
+export default BodyPartSelection;

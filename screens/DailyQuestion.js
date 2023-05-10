@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
@@ -9,6 +9,11 @@ import { ButtonText, StyledButton } from '../components/styles';
 import axios from 'axios';
 import { CredentialsContext } from '../components/CredentialsContext';
 import {useTranslation} from "react-i18next";
+
+// Imports library to handle in app notifications
+import { Notifications } from 'expo-notifications';
+
+
 
 const DailyQuestion = ({ navigation }) => {
 	const { top } = useSafeAreaInsets();
@@ -67,9 +72,37 @@ const styles = StyleSheet.create({
 	pain: { alignItems: 'center', justifyContent: 'center', width: 100, height: 44, marginVertical: 4, borderRadius: 8 },
 });
 
+
+const NOTIFICATION_HOUR = 12;
+
 export const DailyQuestionMedication = ({ route, navigation }) => {
 
 	const { storedCredentials } = useContext(CredentialsContext);
+
+	async function scheduleDailyQuestionnaireNotification() {
+		await Notifications.scheduleNotificationAsync({
+			content: {
+				title: 'ModaMedic Reminder',
+				body: "Don't forget to fill out your daily questionnaire."
+			},
+			trigger: {
+				hour: NOTIFICATION_HOUR,
+				minute: 0,
+				repeats: true,
+			},
+		});
+	}
+
+	useEffect(() => {
+		scheduleDailyQuestionnaireNotification();
+	}, []);
+
+
+	async function resetNotificationTimer()  {
+		await Notifications.cancelAllScheduledNotificationsAsync();
+		await scheduleDailyQuestionnaireNotification();
+	}
+
 	const onAnswer = async answer => {
 		const uri = backendPath.API_URL.answers + '/sendAnswers';
 		const paintLevel = route.params.painLevel;
@@ -84,7 +117,8 @@ export const DailyQuestionMedication = ({ route, navigation }) => {
 		console.log('result', result.data);
 
 
-
+		// Reset the notification timer
+		await resetNotificationTimer();
 
 		Alert.alert(t("Form has been submitted"));
 		navigation.navigate('Welcome');
