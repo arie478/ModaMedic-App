@@ -11,9 +11,7 @@ import { CredentialsContext } from '../components/CredentialsContext';
 import {useTranslation} from "react-i18next";
 
 // Imports library to handle in app notifications
-import { Notifications } from 'expo-notifications';
-
-
+import * as Notifications from 'expo-notifications';
 
 const DailyQuestion = ({ navigation }) => {
 	const { top } = useSafeAreaInsets();
