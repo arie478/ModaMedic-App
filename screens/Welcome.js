@@ -308,7 +308,7 @@ const Welcome = ({ navigation }) => {
 							<ButtonText welcome={true}>{t('Daily Questionnaires')}</ButtonText>
 							<Fontisto name="table-1" color={primary} size={15} />
 						</StyledButton>
-						<StyledButton welcome={true} onPress={() => navigation.navigate('LifeQuality1')}>
+						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
 							<ButtonText welcome={true}>{t('Life Quality Questionnaires')}</ButtonText>
 							<Fontisto name="table-1" color={primary} size={15} />
 						</StyledButton>

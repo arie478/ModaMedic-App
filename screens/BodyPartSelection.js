@@ -222,7 +222,7 @@ const BodyPartSelection = ({ navigation }) => {
 					frontOnly={true}
 					onMusclePress={handlePartPress}
 					zoomOnPress={false}
-					scale = {3.3}
+					scale = {2.7}
 				/>
 			</View>
 		);
@@ -254,7 +254,7 @@ const BodyPartSelection = ({ navigation }) => {
 
 				<WelcomeContainer>
 					<StyledFormArea>
-						<StyledButton  onPress={() => navigation.navigate('Welcome')}>
+						<StyledButton  onPress={() => navigation.navigate('LifeQuality1')}>
 							<ButtonText >{t('Select')}</ButtonText>
 							{/*<Fontisto name="person" color={primary} size={15} />*/}
 						</StyledButton>
