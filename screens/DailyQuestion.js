@@ -38,7 +38,7 @@ const DailyQuestion = ({ navigation }) => {
 	const {t} = useTranslation();
 
 	return (
-		<View style={[styles.container, { paddingTop: top + 20 }]}>
+		<View style={[styles.container, { paddingTop: top + 30 }]}>
 			<Text style={{ fontSize: 20, textAlign: 'center' }}>{t("How would you rank your most severe pain you experienced today?")}</Text>
 			<View style={styles.painList}>
 				<Text style={{ textAlign: 'center' }}>{t("I did not experience pain at all")}</Text>
@@ -61,13 +61,12 @@ const DailyQuestion = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
-		paddingHorizontal: 8,
+		paddingHorizontal: 5,
 	},
-	painList: { marginTop: 40 },
-	pain: { alignItems: 'center', justifyContent: 'center', width: 100, height: 44, marginVertical: 4, borderRadius: 8 },
+	painList: { marginTop: 10 },
+	pain: { alignItems: 'center', justifyContent: 'center', width: 300, height: 40, marginVertical: 4, borderRadius: 8 },
 });
 
 

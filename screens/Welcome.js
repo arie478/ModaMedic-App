@@ -158,7 +158,6 @@ const addDocToDatabase = async (collection, data) => {
 
 
 const Welcome = ({ navigation }) => {
-	// const [storedCredentials, setStoredCredentials] = useContext(CredentialsContext);
 	const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
 	// console.log("storedCredentials", storedCredentials);
 	const { name } = storedCredentials;
@@ -299,30 +298,28 @@ const Welcome = ({ navigation }) => {
 					>
 
 					{/*<Avatar welcomeLeftIcon={true} source={require('../assets/notif_icon.png')} />*/}
-					<StyledFormArea
-					>
+					<StyledFormArea>
 						{/*<Avatar resizeMode="cover" source={require('../assets/new_body.png')} />*/}
 						<SubTitle welcomeHeader={true}>{t('Surgery Date')}: 29/11/2022</SubTitle>
 
 						<StyledButton welcome={true} onPress={() => navigation.navigate('DailyQuestion')}>
-							<ButtonText welcome={true}>{t('Daily Questionnaires')}</ButtonText>
-							<Fontisto name="table-1" color={primary} size={15} />
+							<Fontisto name="checkbox-active" color={primary} size={15} />
+							<ButtonText welcome={true}>  {t('Daily Questionnaires')}</ButtonText>
 						</StyledButton>
 						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
-							<ButtonText welcome={true}>{t('Life Quality Questionnaires')}</ButtonText>
 							<Fontisto name="table-1" color={primary} size={15} />
+							<ButtonText welcome={true}>  {t('Life Quality Questionnaires')}</ButtonText>
 						</StyledButton>
 						<StyledButton onPress={() => navigation.navigate('HomeVideoExercise')} welcome={true}>
-							<ButtonText welcome={true}>{t('Exercise with home videos')}</ButtonText>
-
 							<Fontisto name="youtube-play" color={primary} size={15} />
+							<ButtonText welcome={true}>  {t('Exercise with home videos')}</ButtonText>
 						</StyledButton>
 						<StyledButton welcome={true} onPress={() => navigation.navigate('PersonalDetails')}>
-							<ButtonText welcome={true}>{t('Personal Information')}</ButtonText>
 							<Fontisto name="person" color={primary} size={15} />
+							<ButtonText welcome={true}>  {t('Personal Information')}</ButtonText>
 						</StyledButton>
-						<StyledButton
 
+						<StyledButton
 							disabled={accessToken}
 							style={accessToken && { backgroundColor: 'gray'}}
 							google={true}
@@ -330,22 +327,17 @@ const Welcome = ({ navigation }) => {
 							<Fontisto name="google" color={primary} size={15}    />
 							<ButtonText   google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
 						</StyledButton>
+
 						<Line />
+
 						<StyledButton onPress={clearLogin}>
 							<ButtonText >{t('Log out')}</ButtonText>
 						</StyledButton>
+
 					</StyledFormArea>
-
-
-
-
 				</WelcomeContainer>
-
-
-
 			</InnerContainer>
 		</>
 	);
 };
-
 export default Welcome;

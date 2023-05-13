@@ -18,33 +18,21 @@ const { primary, secondary, tertiary, darkLight, brand, green, red, lightblue } 
 
 export const WelcomeContainerHeader = styled.View`
   display: flex;
-  flex-direction: row-reverse;
-  padding-top: 20px;
-  
-  
-  
+  flex-direction: row;
 `;
 
 export const StyledContainer = styled.View`
-  flex: 1;
-  padding: 25px;
   padding-top: ${StatusBarHeight + 10}px;
   background-color: ${primary};
 `;
 
 export const InnerContainer = styled.View`
-  flex: 1;
   width: 100%;
   align-items: center;
-
-
-  
 `;
 
 export const WelcomeContainer = styled(InnerContainer)`
-  padding: 25px;
-  padding-top: 10px;
-  justify-content: center;
+  padding: 0;
 `;
 
 export const WelcomeImage = styled.Image`
@@ -57,19 +45,16 @@ export const Avatar = styled.Image`
   height: 250px;
   margin: auto;
 
-  margin-bottom: 10px;
-  margin-top: 10px;
-
   ${(props) =>
     props.welcomeLeftIcon &&
     `
     width: 50px;
-  height: 50px;
-  `}
+    height: 50px;
+    `}
 `;
 
 export const PageLogo = styled.Image`
-  width: 400px;
+  width: 300px;
   height: 150px;
 `;
 
@@ -158,7 +143,7 @@ export const StyledButton = styled.TouchableOpacity`
   align-items: center;
 
   ${(props) =>
-    props.google == true &&
+    props.google === true &&
     `
     background-color: ${red};
     flex-direction: row;
@@ -167,25 +152,22 @@ export const StyledButton = styled.TouchableOpacity`
   `}
 
   ${(props) =>
-    props.welcome == true &&
+    props.welcome === true &&
     `
     background-color: ${green};
     flex-direction: row;
     justify-content: center;
     flex: 1 50px;
-
   `}
 
   ${(props) =>
-      props.home == true &&
+      props.home === true &&
       `
-    background-color: ${green};
-    justify-content: center;
-     width: 100px;
-     margin: 15px;
-     
-  `}
-  
+      background-color: ${green};
+      justify-content: center;
+      width: 100px;
+      margin: 15px;
+      `}
 `;
 
 export const ButtonText = styled.Text`
@@ -193,13 +175,13 @@ export const ButtonText = styled.Text`
   font-size: 16px;
 
   ${(props) =>
-    props.google == true &&
+    props.google === true &&
     `
     padding: 10px;
   `}
 
   ${(props) =>
-    props.welcome == true &&
+    props.welcome === true &&
     `
     padding-right: 10px;
   `}

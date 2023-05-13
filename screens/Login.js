@@ -149,7 +149,7 @@ const Login = ({ navigation }) => {
 
                 {isSubmitting && (
                   <StyledButton disabled={true}>
-                    <ActivityIndicator size="large" color={primary} />
+                    <ActivityIndicator size="small" color={primary} />
                   </StyledButton>
                 )}
 
@@ -158,7 +158,7 @@ const Login = ({ navigation }) => {
                 <ExtraView  style={{flexDirection: i18n.language === 'en' || i18n.language === 'ru' ? 'row' : 'row-reverse'}}>
                   <ExtraText >{t("Don't have an account yet?")}</ExtraText>
                   <TextLink onPress={() => navigation.navigate('Signup')}>
-                    <TextLinkContent >{" " + t("Register here")}</TextLinkContent>
+                    <TextLinkContent> {t("Register here")} </TextLinkContent>
                   </TextLink>
                 </ExtraView>
               </StyledFormArea>

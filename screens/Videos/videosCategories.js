@@ -60,9 +60,9 @@ const VideosCategories = ({ navigation }) => {
 
   return (
       <InnerContainer>
-        <Avatar style={{ marginTop: 50 }} welcomeLeftIcon={true} source={require('../../assets/notif_icon.png')} />
+        {/*<Avatar style={{ marginTop: 50 }} welcomeLeftIcon={true} source={require('../../assets/notif_icon.png')} />*/}
 
-        <PageTitle style={{ marginTop: 10 }} welcome={true}>
+        <PageTitle style={{ marginTop: 50, fontSize: 28 }} welcome={true}>
           {t("Exercise with home videos")}
         </PageTitle>
 

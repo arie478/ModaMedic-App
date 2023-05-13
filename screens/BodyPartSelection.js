@@ -222,7 +222,7 @@ const BodyPartSelection = ({ navigation }) => {
 					frontOnly={true}
 					onMusclePress={handlePartPress}
 					zoomOnPress={false}
-					scale = {2.7}
+					scale = {2.4}
 				/>
 			</View>
 		);

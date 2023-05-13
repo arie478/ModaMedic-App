@@ -257,7 +257,7 @@ const Signup = ({ navigation }) => {
                 <ExtraView style={{flexDirection: i18n.language === 'en' || i18n.language === 'ru' ? 'row' : 'row-reverse'}}>
                   <ExtraText>{t('Do you already have an account?')}</ExtraText>
                   <TextLink onPress={() => navigation.navigate('Login')}>
-                    <TextLinkContent>{" " + t('Sign in here')}</TextLinkContent>
+                    <TextLinkContent> {t('Sign in here')} </TextLinkContent>
                   </TextLink>
                 </ExtraView>
               </StyledFormArea>
