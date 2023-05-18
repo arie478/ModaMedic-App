@@ -100,7 +100,7 @@ const Login = ({ navigation }) => {
       <StyledContainer>
         <StatusBar style="dark" />
         <InnerContainer>
-          <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')} />
+          <PageLogo resizeMode="cover" source={require('../assets/app_logo_small.png')} />
           {/*<PageTitle>ModaMedic</PageTitle>*/}
           {/*<SubTitle>Login</SubTitle>*/}
           <Formik
