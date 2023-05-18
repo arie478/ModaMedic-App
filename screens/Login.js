@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AsyncStorageLib from '@react-native-async-storage/async-storage';
 import { CredentialsContext } from '../components/CredentialsContext';
 import ENV from "../environment";
+import { Image } from 'react-native';
+
 
 import {
   StyledContainer,
@@ -100,6 +102,7 @@ const Login = ({ navigation }) => {
       <StyledContainer>
         <StatusBar style="dark" />
         <InnerContainer>
+        {/* <Image source={require('../assets/app_logo_small.png')} resizeMode="cover" style={styles.logo} /> */}
           <PageLogo resizeMode="cover" source={require('../assets/app_logo_small.png')} />
           {/*<PageTitle>ModaMedic</PageTitle>*/}
           {/*<SubTitle>Login</SubTitle>*/}

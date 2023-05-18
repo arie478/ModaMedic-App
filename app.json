@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "ModaMedicApp",
+    "name": "ModaMedic",
     "scheme": "modaappreactnative",
     "slug": "modamedicapp",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "sdkVersion": "48.0.0",
@@ -15,18 +15,18 @@
     },
     "ios": {
       "bundleIdentifier": "com.ise.modamedic",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.0.4",
       "supportsTablet": true
     },
     "android": {
       "package": "com.moda.app",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {

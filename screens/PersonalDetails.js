@@ -5,7 +5,7 @@ import AsyncStorageLib from "@react-native-async-storage/async-storage";
 import {CredentialsContext} from "../components/CredentialsContext";
 import { Formik } from 'formik';
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
-
+import { Image } from 'react-native';
 
 import {
     StyledContainer,
@@ -55,7 +55,8 @@ const PersonalDetails = ({ navigation }) => {
       <StatusBar style="dark" />
       <InnerContainer>
         <WelcomeContainer>
-          <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')} />
+          <PageLogo resizeMode="cover" source={require('../assets/app_logo_small.png')} />
+          {/* <Image source={require('../assets/app_logo_small.png')} resizeMode="cover" style={styles.logo} /> */}
           <PageTitle welcome={true}>{t('Your Personal Information')}</PageTitle>
           <StyledFormArea>
             <SubTitle welcomeHeader={true}>{t('Surgery Date')}: 29/11/2022</SubTitle>
