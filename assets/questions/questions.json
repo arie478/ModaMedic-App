@@ -1,0 +1,697 @@
+[
+  {
+    "id": 0,
+    "question": "Mobility",
+    "answers": [
+      "I have no problems walking",
+      "I have slight walking problems",
+      "I have moderate walking problems",
+      "I have severe walking problems",
+      "I am not able to walk"
+    ],
+    "show": "always"
+  },
+
+  {
+    "id": 1,
+    "question": "Self-care",
+    "answers": [
+      "I have no problems bathing or dressing myself",
+      "I have minor problems bathing or dressing myself",
+      "I have moderate problems bathing or dressing myself",
+      "I have serious problems bathing or dressing myself",
+      "I am unable to bathe or dress myself"
+    ],
+    "show": "always"
+  },
+
+  {
+    "id": 2,
+    "question": "Normal activities (such as work, studies, housework, family or leisure activities)",
+    "answers": [
+      "I have no problems engaging in my usual activities",
+      "I have mild problems engaging in my usual activities",
+      "I have moderate trouble engaging in my usual activities",
+      "I have severe problems engaging in my usual activities",
+      "I am unable to engage in my usual activities"
+    ],
+    "show": "always"
+  },
+
+  {
+    "id": 3,
+    "question": "Pain / discomfort",
+    "answers": [
+      "I have no pain or discomfort",
+      "I have little pain or discomfort",
+      "I have moderate pain or discomfort",
+      "I have severe pain or a great deal of discomfort",
+      "I have extreme pain or discomfort"
+    ],
+    "show": "always"
+  },
+
+  {
+    "id": 4,
+    "question": "Anxiety / depression",
+    "answers": [
+      "I am not anxious or depressed",
+      "I am slightly anxious or depressed",
+      "I am moderately anxious or depressed",
+      "I am anxious or depressed to a great extent",
+      "I am extremely anxious or depressed"
+    ],
+    "show": "always"
+  },
+
+
+
+  {
+    "id": 6,
+    "question": "How difficult is it for you to carry out your usual activities as part of your work, housework, or studies?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 7,
+    "question": "How difficult is it for you to carry out your usual hobbies, leisure activities, or sporting activities?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 8,
+    "question": "How difficult is it for you to get in or out of the bath?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 9,
+    "question": "How difficult is it for you to walk between rooms?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 10,
+    "question": "How much difficulty do you have when putting on shoes or putting on socks?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 11,
+    "question": "How difficult is it for you to squat?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 12,
+    "question": "What is your degree of difficulty when lifting an object such as a bag or shopping bag from the floor?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 13,
+    "question": "What is your degree of difficulty in performing light activities within your home?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 14,
+    "question": "What is your degree of difficulty in performing difficult activities within your home?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 15,
+    "question": "What is your degree of difficulty when getting in or out of the car?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 16,
+    "question": "How difficult is it for you to walk 2 blocks?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 17,
+    "question": "What is your degree of difficulty when walking a distance of 1.6 km?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 18,
+    "question": "What is your degree of difficulty when going up or down 10 steps (as one flight of stairs)?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 19,
+    "question": "How difficult is it for you to stand for an hour?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 20,
+    "question": "How difficult is it for you to sit for an hour?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 21,
+    "question": "What is your level of difficulty when running on a flat surface?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 22,
+    "question": "What is your level of difficulty when running on an uneven surface?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 23,
+    "question": "How much difficulty do you have when making sharp turns while running fast?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 24,
+    "question": "What is your level of difficulty when skipping?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+  {
+    "id": 25,
+    "question": "How difficult is it for you to turn in bed?",
+    "answers": [
+      "Without difficulty",
+      "Slight difficulty",
+      "Moderate difficulty",
+      "Great difficulty",
+      "Severe difficulty or inability to perform"
+    ],
+    "show": "legs"
+  },
+
+
+
+  {
+    "id": 26,
+    "question": "Personal care (bathing, dressing)",
+    "answers": [
+      "I can take care of myself now as usual without making the pain worse",
+      "I can take care of myself as usual but this makes my pain worse",
+      "Taking care of myself is painful, and I am slow and careful",
+      "I need some help but can manage most of the self-care activities",
+     " I need daily help with most self-care activities",
+     " I don't get dressed, I bathe with difficulty and I stay in bed"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 27,
+    "question": "",
+    "answers": [
+      "I have no pain right now",
+      "The pain is very weak right now",
+      "The pain is moderate at the moment",
+      "The pain is pretty bad right now",
+      "The pain is very severe right now",
+      "The pain is unbearable right now"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 28,
+    "question": "Lifting",
+    "answers": [
+      " I can lift heavy loads without aggravating the pain",
+      " I can lift heavy loads but it makes the pain worse",
+      "The pain prevents me from lifting heavy loads from the floor but I can manage if they are placed comfortably (on a table for example)",
+      "The pain prevents me from lifting heavy loads but I can handle light and medium loads if they are placed comfortably",
+      "I can only lift very light loads",
+      "I am unable to lift or carry anything"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 29,
+    "question": "Reading",
+    "answers": [
+      "I can read as much as I want without neck pain",
+      "I can read as much as I want with a slight pain in my neck",
+      "I can read as much as I want with moderate pain in my neck",
+      "I am unable to read as much as I would like due to moderate pain in my neck",
+      "I can hardly read due to severe pain in my neck",
+     " I can't read at all"
+
+    ],
+    "show": "head"
+  },
+  {
+    "id": 30,
+    "question": "Headache",
+    "answers": [
+      "I have no headaches at all",
+      "I rarely have mild headaches",
+      "I rarely have moderate headaches",
+      "I have moderate headaches often",
+      "I often have severe headaches",
+      "I have headaches almost all the time"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 31,
+    "question": "Concentration",
+    "answers": [
+      "When I want to I can concentrate fully without difficulty",
+      "When I want to I can concentrate fully with little difficulty",
+      "I have a reasonable amount of difficulty concentrating when I want to",
+      "I have a lot of difficulties concentrating when I want to",
+      "I have enormous difficulty concentrating when I want to",
+      "I am not able to concentrate at all"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 32,
+    "question": "Work",
+    "answers": [
+      "I can work as much as I want",
+      "I can only do my routine work but not beyond that",
+      "I can do most of my routine work but not beyond that",
+      "I am unable to perform my routine work",
+      "I can hardly work",
+      "I can't work at all"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 33,
+    "question": "Driving",
+    "answers": [
+      "I can drive my car without pain in my neck",
+      "I can drive my car as much as I want with a slight pain in my neck",
+      "I can drive my car as much as I want with moderate pain in my neck",
+      "I can't drive my car as much as I want due to moderate pain in my neck",
+      "I can hardly drive due to severe pain in my neck",
+      "I can't drive at all"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 34,
+    "question": "Sleeping",
+    "answers": [
+      "I have no sleep problems",
+      "My sleep is slightly disturbed (less than an hour without sleep)",
+      "Moderately disturbed sleep (1-2 hours without sleep)",
+      "Moderately disturbed sleep (2-3 hours without sleep)",
+      "Severely disturbed sleep (3-5 hours without sleep)",
+      "Completely disturbed sleep (5-7 hours without sleep)"
+    ],
+    "show": "head"
+  },
+  {
+    "id": 35,
+    "question": "Free time",
+    "answers": [
+      "I can engage in all my leisure activities, without pain in my neck at all",
+      "I can engage in all my leisure activities, with little pain in my neck",
+      "I can engage in most but not all of my usual leisure activities due to pain in my neck",
+      "I can engage in few of my usual leisure activities, due to pain in my neck",
+      "I am barely able to engage in leisure activities, due to pain in my neck",
+      "I am unable to engage in leisure activities at all"
+    ],
+    "show": "head"
+  },
+
+
+
+  {
+    "id": 36,
+    "question": "Intensity of pain",
+    "answers": [
+      "I can bear the pain without taking painkillers",
+      "The pain is severe but I manage without consuming painkillers",
+      "Painkillers provide me with complete pain relief",
+      "Painkillers give me moderate pain relief",
+      "Painkillers provide me with little pain relief",
+      "Painkillers do not affect my pain"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 37,
+    "question": "Personal care (bathing, dressing)",
+    "answers": [
+      "I can take care of myself normally without causing the pain to worsen",
+      "I can take care of myself normally but this increases my pain",
+      "Taking care of myself is painful, and I am slow and careful",
+      "I need help but I can manage most self-care activities",
+      "I need daily help in most aspects of self-care",
+      "I don't get dressed, I bathe with difficulty and I stay in bed"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 38,
+    "question": "Lifting",
+    "answers": [
+      "I can lift heavy loads without worsening the pain",
+      "I can lift heavy loads but this makes the pain worse",
+      "The pain prevents me from lifting heavy loads from the floor, but I can manage if the load is placed comfortably (on a table, etc.)",
+      "The pain prevents me from lifting heavy loads but I can handle light and medium loads if they are placed comfortably",
+      "I can only lift very light loads",
+      "I am unable to lift or carry loads at all"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 39,
+    "question": "Walking",
+    "answers": [
+      "The pain does not prevent me from walking any distance",
+      "The pain prevents me from walking more than a mile",
+      "The pain prevents me from walking more than half a mile",
+      "The pain prevents me from walking more than quarter of a mile",
+      "I can only walk with crutches or a cane",
+      "I'm in bed most of the time and have to crawl to the bathroom"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 40,
+    "question": "Sitting",
+    "answers": [
+      "I can sit in any chair as much as I want",
+      "I can only sit on my favorite chair as much as I want",
+      "The pain prevents me from sitting for more than one hour",
+      "The pain prevents me from sitting for more than half an hour",
+      "The pain prevents me from sitting for more than 10 minutes",
+      "The pain prevents me from sitting"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 41,
+    "question": "Standing",
+    "answers": [
+      "I can stand as long as I want without the pain worsening",
+      "I can stand as long as I want, but it increases my pain",
+      "The pain prevents me from standing for more than an hour",
+      "The pain prevents me from standing for more than half an hour",
+      "The pain prevents me from standing for more than 10 minutes",
+      "The pain prevents me from standing at all"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 42,
+    "question": "Sleeping",
+    "answers": [
+      "The pain does not prevent me from sleeping well",
+      "I can only sleep well after using painkillers",
+      "Even when I take medication, I sleep less than 6 hours",
+      "Even when I take medicine, I sleep less than 4 hours",
+      "Even when I take medication, I sleep less than two hours",
+      "The pain prevents me from sleeping completely"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 43,
+    "question": "Social life",
+    "answers": [
+      "My social life is normal and does not increase my pain",
+      "My social life is normal but it increases my pain level",
+      "The pain prevents me from participating in more energetic activities such as sports or dancing",
+      "The pain prevents me from going out often",
+      "The pain limits my social life to my home",
+      "I have almost no social life as a result of my pain"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 44,
+    "question": "Driving",
+    "answers": [
+      "I can travel anywhere without worsening pain",
+      "I can travel anywhere but it makes my pain worse",
+      "The pain limits my travel for two hours",
+      "The pain limits my travel for one hour",
+      "The pain limits my travel to short and necessary trips lasting less than half an hour",
+      "The pain prevents me from traveling except for visits to the doctor/therapist or the hospital"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 45,
+    "question": "Employment / Household",
+    "answers": [
+      "Normal household/work activities do not cause pain",
+      "Normal household/work activities increase my pain but I am still able to do everything that is required of me",
+      "I can perform most of my household/work duties, but pain prevents me from performing more difficult physical activities (such as lifting, and vacuuming)",
+      "The pain prevents me from doing anything, except light duties",
+      "The pain prevents me from doing even light duties",
+      "The pain prevents me from doing any normal work or household task"
+    ],
+    "show": "back"
+  },
+
+
+
+  {
+    "id": 46,
+    "question": "Current pain intensity",
+    "answers": [
+      "I have no pain",
+      "The pain is minimal",
+      "The pain is moderate",
+      "The pain is strong",
+      "The pain is intense",
+      "The pain is the worst there is"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 47,
+    "question": "Daily functioning (bathing, dressing, etc.)",
+    "answers": [
+      "I can take care of myself without additional pain",
+      "I can take care of myself but with pain",
+      "Taking care of myself is painful, and I am slow and careful",
+      "I need help but function in most self-care activities",
+      "I need daily help with most functional functions",
+      "I don't get dressed, I bathe with difficulty and I stay in bed"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 48,
+    "question": "Lifting loads",
+    "answers": [
+      "I can lift heavy loads without pain",
+      "I can lift heavy loads but feel the pain",
+      "The pain prevents me from lifting heavy loads from the floor, but I can manage if the load is placed comfortably (on a table, etc.)",
+      "The pain prevents me from lifting heavy loads but I can handle light and medium loads if they are placed comfortably",
+      "I can only lift very light loads",
+      "I am unable to lift or carry loads at all"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 49,
+    "question": "Walking",
+    "answers": [
+      "The pain does not prevent me from walking any distance",
+      "The pain prevents me from walking more than a mile",
+      "The pain prevents me from walking more than 400 meters",
+      "The pain prevents me from walking more than 100 meters",
+      "I can only walk with a stick",
+      "I'm in bed most of the time and have to crawl to the bathroom"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 50,
+    "question": "Sitting",
+    "answers": [
+      "I can sit in any chair as much as I want",
+      "I can only sit on my favorite chair as much as I want",
+      "The pain prevents me from sitting for more than one hour",
+      "The pain prevents me from sitting for more than half an hour",
+      "The pain prevents me from sitting for more than 10 minutes",
+      "The pain prevents me from sitting at all"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 51,
+    "question": "Standing",
+    "answers": [
+      "I can stand as long as I want without pain",
+      "I can stand as long as I want with little pain",
+      "The pain prevents me from standing for more than an hour",
+      "The pain prevents me from standing for more than half an hour",
+      "The pain prevents me from standing for more than 10 minutes",
+      "The pain prevents me from standing at all"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 52,
+    "question": "Sleeping",
+    "answers": [
+      "My sleep is not disturbed as a result of the pain",
+      "My sleep is sometimes disturbed as a result of the pain",
+      "Due to the pain, I sleep less than 6 hours",
+      "Due to the pain, I sleep less than 4 hours",
+      "Due to the pain, I sleep less than two hours",
+      "Pain prevents me from sleeping completely"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 53,
+    "question": "Social life",
+    "answers": [
+      "My social life is normal and does not increase my pain",
+      "My social life is normal but it increases my pain level",
+      "The pain does not have a significant effect on my social life apart from limiting active activities such as sports",
+      "The pain has limited my social life and I don't go out as often",
+      "The pain limits my social life to my home",
+      "I have almost no social life as a result of my pain"
+    ],
+    "show": "back"
+  },
+  {
+    "id": 54,
+    "question": "Trips",
+    "answers": [
+      "I can walk anywhere without pain",
+      "I can walk anywhere but with the added pain",
+      "The pain is intense but I manage to go for walks of more than two hours",
+      "The pain limits my walks to at least one hour",
+      "The pain limits me to only necessary bowel movements lasting less than half an hour",
+      "The pain prevents me from going out except for treatments"
+    ],
+    "show": "back"
+  }
+
+]

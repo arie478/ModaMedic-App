@@ -20,6 +20,7 @@ import DailyQuestion, {
 	LifeQuality5,
   	LifeQuality6,
 } from '../screens/DailyQuestion';
+import {LifeQualityQuestion} from "../screens/LifeQualityQuestion";
 
 const { primary, tertiary } = Colors;
 const Stack = createNativeStackNavigator();
@@ -51,12 +52,13 @@ const RootStack = () => {
 								<Stack.Screen name="DailyQuestion" component={DailyQuestion} />
 								<Stack.Screen name="DailyQuestionMedication" component={DailyQuestionMedication} />
 								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
-								<Stack.Screen name="LifeQuality1" component={LifeQuality1} />
-								<Stack.Screen name="LifeQuality2" component={LifeQuality2} />
-								<Stack.Screen name="LifeQuality3" component={LifeQuality3} />
-								<Stack.Screen name="LifeQuality4" component={LifeQuality4} />
-								<Stack.Screen name="LifeQuality5" component={LifeQuality5} />
-								<Stack.Screen name="LifeQuality6" component={LifeQuality6} />
+								<Stack.Screen name="LifeQualityQuestion" component={LifeQualityQuestion} />
+								{/*<Stack.Screen name="LifeQuality1" component={LifeQuality1} />*/}
+								{/*<Stack.Screen name="LifeQuality2" component={LifeQuality2} />*/}
+								{/*<Stack.Screen name="LifeQuality3" component={LifeQuality3} />*/}
+								{/*<Stack.Screen name="LifeQuality4" component={LifeQuality4} />*/}
+								{/*<Stack.Screen name="LifeQuality5" component={LifeQuality5} />*/}
+								{/*<Stack.Screen name="LifeQuality6" component={LifeQuality6} />*/}
 							</>
 						) : (
 							<>

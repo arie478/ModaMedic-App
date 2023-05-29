@@ -53,6 +53,9 @@ import Body from 'react-native-body-highlighter';
 import SelectedPartsContext from '../components/SelectedPartsContext';
 
 
+import questionsData from '../assets/questions/questions.json';
+
+
 const { brand, darkLight, primary } = Colors;
 
 
@@ -95,10 +98,11 @@ const BodyPartSelection = ({ navigation }) => {
 	//Defines the body zones groups and what body parts are a part of the whole group
 	const groups = {
 		head: ['head', 'neck'],
-		chest: ['chest'],
-		back: ['trapezius', 'upper-back', 'lower-back'],
+		// chest: ['chest'],
+		// back: ['trapezius', 'upper-back', 'lower-back'],
+		back: ['trapezius', 'upper-back', 'lower-back', 'chest', 'abs', 'obliques'],
 		arms: ['biceps', 'triceps', 'forearm', 'front-deltoids'],
-		abs: ['abs', 'obliques'],
+		// abs: ['abs', 'obliques'],
 		legs: ['adductor', 'hamstring', 'quadriceps', 'abductors', 'calves', 'gluteal', 'knees']
 	};
 
@@ -129,8 +133,11 @@ const BodyPartSelection = ({ navigation }) => {
 				{ slug: 'head', intensity: getIntensity('head') },
 				{ slug: 'neck', intensity: getIntensity('head') },
 
-				//Chest
-				{ slug: 'chest', intensity: getIntensity('chest') },
+				// //Chest
+				// { slug: 'chest', intensity: getIntensity('chest') },
+
+				//Chest as back :
+				{ slug: 'chest', intensity: getIntensity('back') },
 
 				//Back
 				{ slug: 'trapezius', intensity: getIntensity('back') },
@@ -143,9 +150,13 @@ const BodyPartSelection = ({ navigation }) => {
 				{ slug: 'forearm', intensity: getIntensity('arms') },
 				{ slug: 'front-deltoids', intensity: getIntensity('arms') },
 
-				//Abs
-				{ slug: 'abs', intensity: getIntensity('abs') },
-				{ slug: 'obliques', intensity: getIntensity('abs') },
+				// //Abs
+				// { slug: 'abs', intensity: getIntensity('abs') },
+				// { slug: 'obliques', intensity: getIntensity('abs') },
+
+				//Abs as back
+				{ slug: 'abs', intensity: getIntensity('back') },
+				{ slug: 'obliques', intensity: getIntensity('back') },
 
 				//Legs
 				{ slug: 'adductor', intensity: getIntensity('legs') },
@@ -228,8 +239,17 @@ const BodyPartSelection = ({ navigation }) => {
 		);
 	};
 
+	const filteredQuestions = questionsData.filter((question) => {
+		if (question.show && question.show !== "always") {
+			const parts = groups[question.show];
+			return parts.some((part) => selectedParts.includes(part));
+		}
+		return true;
+	});
 
-		return (
+
+
+	return (
 		<>
 			<StatusBar style="dark" />
 			<InnerContainer>
@@ -254,7 +274,12 @@ const BodyPartSelection = ({ navigation }) => {
 
 				<WelcomeContainer>
 					<StyledFormArea>
-						<StyledButton  onPress={() => navigation.navigate('LifeQuality1')}>
+						<StyledButton  onPress={() =>
+							navigation.navigate('LifeQualityQuestion', {
+								questionNum: 0,
+								questionsData: filteredQuestions,
+							})
+						}>
 							<ButtonText >{t('Select')}</ButtonText>
 							{/*<Fontisto name="person" color={primary} size={15} />*/}
 						</StyledButton>
