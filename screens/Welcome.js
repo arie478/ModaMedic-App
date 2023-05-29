@@ -300,7 +300,7 @@ const Welcome = ({ navigation }) => {
 					{/*<Avatar welcomeLeftIcon={true} source={require('../assets/notif_icon.png')} />*/}
 					<StyledFormArea>
 						{/*<Avatar resizeMode="cover" source={require('../assets/new_body.png')} />*/}
-						<SubTitle welcomeHeader={true}>{t('Surgery Date')}: 29/11/2022</SubTitle>
+						<SubTitle welcomeHeader={true}>{t('Surgery Date')}: 19/09/2023</SubTitle>
 
 						<StyledButton welcome={true} onPress={() => navigation.navigate('DailyQuestion')}>
 							<Fontisto name="checkbox-active" color={primary} size={15} />

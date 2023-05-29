@@ -15,5 +15,14 @@
       "distribution": "internal"
     },
     "production": {}
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "isetech@bgu.ac.il",
+        "ascAppId": "6448632896",
+        "appleTeamId": "LKKN48HLNG"
+      }
+    }
   }
 }
