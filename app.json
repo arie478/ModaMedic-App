@@ -3,7 +3,7 @@
     "name": "ModaMedic",
     "scheme": "modaappreactnative",
     "slug": "modamedicapp",
-    "version": "1.0.4",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "sdkVersion": "48.0.0",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.ise.modamedic",
-      "buildNumber": "1.0.4",
+      "buildNumber": "1.0.7",
       "supportsTablet": true
     },
     "android": {
