@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "ModaMedicApp",
+    "name": "ModaMedic",
     "scheme": "modaappreactnative",
     "slug": "modamedicapp",
-    "version": "1.0.0",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "sdkVersion": "48.0.0",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.ise.modamedic",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.0.8",
       "supportsTablet": true
     },
     "android": {
