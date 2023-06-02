@@ -11,6 +11,7 @@ import VideosCategories from '../screens/Videos/videosCategories';
 import Videos from '../screens/Videos/videos';
 import UpdatePersonalDetails from '../screens/UpdatePersonalDetails';
 import BodyPartSelection from "../screens/BodyPartSelection";
+import UpdateSurgeryDate from '../screens/UpdateSurgeryDate';
 import DailyQuestion, {
 	DailyQuestionMedication,
 	LifeQuality1,
@@ -53,6 +54,7 @@ const RootStack = () => {
 								<Stack.Screen name="DailyQuestionMedication" component={DailyQuestionMedication} />
 								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
 								<Stack.Screen name="LifeQualityQuestion" component={LifeQualityQuestion} />
+								<Stack.Screen name="UpdateSurgeryDate" component={UpdateSurgeryDate} />
 								{/*<Stack.Screen name="LifeQuality1" component={LifeQuality1} />*/}
 								{/*<Stack.Screen name="LifeQuality2" component={LifeQuality2} />*/}
 								{/*<Stack.Screen name="LifeQuality3" component={LifeQuality3} />*/}

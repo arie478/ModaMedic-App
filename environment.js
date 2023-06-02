@@ -1,7 +1,7 @@
 import {Constants} from "expo-constants";
 import { Platform } from "react-native";
 
-const backendUri = 'https://modamedic.cs.bgu.ac.il';
+const backendUri = 'https://modamedic.cs.bgu.ac.il/';
 
 const ENV = {
     API_URL: {
@@ -9,7 +9,8 @@ const ENV = {
         signup: 'https://modamedic.cs.bgu.ac.il/users/patientRegister',
         personalDetalis:'https://modamedic.cs.bgu.ac.il/auth/usersAll/patientUpdateAndroid',
         metrics: 'https://modamedic.cs.bgu.ac.il/auth/patients/metrics',
-        answers: 'https://modamedic.cs.bgu.ac.il/auth/patients/answers'
+        answers: 'https://modamedic.cs.bgu.ac.il/auth/patients/answers',
+        userDetalis:'https://modamedic.cs.bgu.ac.il/auth/usersAll'
     },
 
 // const backendUri = 'https://rps.ise.bgu.ac.il/njsw18';
