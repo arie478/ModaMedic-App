@@ -140,10 +140,10 @@ const PersonalDetails = ({ navigation }) => {
               <ButtonText welcome={true}>{t('Update Surgery Date')}</ButtonText>
               <Fontisto name="date" color={primary} size={15} />
             </StyledButton>
-            <StyledButton welcome={true} onPress={() => Alert.alert("This feature will be available in the next update!")}>
+            {/* <StyledButton welcome={true} onPress={() => Alert.alert("This feature will be available in the next update!")}>
               <ButtonText welcome={true}>{t('Updating Medical Questionnaire')}</ButtonText>
               <Fontisto name="table-1" color={primary} size={15} />
-            </StyledButton>
+            </StyledButton> */}
             <Line />
           </StyledFormArea>
         </WelcomeContainer>
