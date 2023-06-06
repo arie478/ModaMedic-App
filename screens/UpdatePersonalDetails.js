@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {Formik} from 'formik';
 import {Ionicons} from '@expo/vector-icons';
@@ -12,6 +12,7 @@ import {
     MsBox,
     PageLogo,
     PageTitle,
+    SubTitle,
     RightIcon,
     StyledButton,
     StyledFormArea,
@@ -43,7 +44,12 @@ const UpdatePersonalDetails = ({navigation}) => {
     const [selectedAcademicStatus, setSelectedAcademicStatus] = useState('');
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
+    const [userHeight, setUserHeight] = useState();
+    const [userWeight, setUserWeight] = useState();
     const {storedCredentials} = useContext(CredentialsContext);
+    const { name } = storedCredentials;
+	const { First_Name } = storedCredentials;
+    var usrInfo = undefined;
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -72,7 +78,7 @@ const UpdatePersonalDetails = ({navigation}) => {
         setShowAcademicStatus(true);
     };
 
-    const handleSignup = (data, setSubmitting) => {
+    const handleUpdate = (data, setSubmitting) => {
         handleMessage(null);
         const url = ENV.API_URL.personalDetalis; //Todo change to
         const headers = {'x-auth-token': storedCredentials.token};
@@ -81,6 +87,7 @@ const UpdatePersonalDetails = ({navigation}) => {
             "Gender": t(selectedGender, {lng: 'en'}),
             "Smoke": t(selectedSmoke, {lng: 'en'}),
             "Education": t(selectedAcademicStatus, {lng: 'en'}),
+            "BirthDate": dob.getTime()
         }
         axios
             .post(url, data, {headers: headers})
@@ -101,6 +108,75 @@ const UpdatePersonalDetails = ({navigation}) => {
         setMessage(message);
         setMessageType(type);
     };
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+          handleMessage(null);
+          try {
+                const response = await axios.get(ENV.API_URL.userDetalis + "/userInfo", {
+              headers: { 'x-auth-token': storedCredentials.token }
+            })
+            .then((response) => {
+                console.log("feched user info");
+                console.log(response.data);
+                usrInfo = response.data;
+            })
+            .catch((error) => {
+                console.log('error', error);
+                handleMessage(t("Something went wrong. Please try again later."));
+            });
+
+            if (usrInfo.data["Gender"] === null || usrInfo.data["Gender"] === "") {
+                setSelectedGender('No data');
+            } else {
+                const gender = usrInfo.data["Gender"].toString();
+                setSelectedGender(gender);
+            }
+            
+            if (usrInfo.data["Smoke"] === null || usrInfo.data["Smoke"] === "") {
+                setSelectedSmoke("No data");
+            } else {
+                const smoke = usrInfo.data["Smoke"].toString();
+                setSelectedSmoke(smoke);
+            }
+            
+            if (usrInfo.data["Education"] === null || usrInfo.data["Education"] === "") {
+                setSelectedAcademicStatus("No data");
+            } else {
+                const education = usrInfo.data["Education"].toString();
+                setSelectedAcademicStatus(education);
+            }
+            
+            if (usrInfo.data["Height"] === null || usrInfo.data["Height"] === "") {
+                setUserHeight('No data');
+            } else {
+                const height = usrInfo.data["Height"].toString();
+                setUserHeight(height);
+            }
+            
+            if (usrInfo.data["Weight"] === null || usrInfo.data["Weight"] === "") {
+                setUserWeight('No data');
+            } else {
+                const weight = usrInfo.data["Weight"].toString();
+                setUserWeight(weight);
+            }
+            
+            if (usrInfo.data["BirthDate"] === null || usrInfo.data["BirthDate"] === "") {
+                setDob(date);
+            } else {
+                const bDate = new Date(usrInfo.data["BirthDate"]);
+                setDob(bDate);
+            }            
+            
+
+          } catch (error) {
+            console.log('error', error);
+            handleMessage(t("Something went wrong. Please try again later."));
+          }
+        };
+
+        fetchUserInfo();
+    }, []);
 
     /*
       The useTranslation hook is a custom hook provided by the react-i18next library.
@@ -212,7 +288,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                 </Modal>
                 <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')}/>
                 <PageTitle welcome={true}>{t('Update Personal Information')}</PageTitle>
-
+                <SubTitle welcome={true}>{name || First_Name || 'Hello User'}</SubTitle>
                 <Formik
                     initialValues={{
                         First_Name: '',
@@ -229,7 +305,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                         Height: '',
                         Weight: '',
                         BMI: '',
-                        DateOfSurgery: '',
+                        DateOfSurgery: 786146400000,
                         Questionnaires: '',
                         VerificationQuestion: 0,
                         VerificationAnswer: 'Leo',
@@ -240,7 +316,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                         //   handleMessage('Please fill all the fields');
                         //   setSubmitting(false);
                         // } else {
-                        handleSignup(values, setSubmitting);
+                        handleUpdate(values, setSubmitting);
                         // }
                     }}
                 >
@@ -250,6 +326,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 label={t("Date of Birth")}
                                 icon="calendar"
                                 placeholder="YYYY - MM - DD" //TODO get personal birth date from server
+                                // placeholder={dob}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('BirthDate')}
                                 onBlur={handleBlur('BirthDate')}
@@ -261,7 +338,8 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t('Smoking Habits')}
                                 icon="person"
-                                placeholder={t("I don't smoke")}
+                                // placeholder={t("I don't smoke")}
+                                placeholder={t(selectedSmoke)}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Smoke')}
                                 onBlur={handleBlur('Smoke')}
@@ -272,8 +350,10 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t("Gender")}
                                 icon="person"
-                                placeholder={t("Male")}
+                                // placeholder={t("Male")}
                                 placeholderTextColor={darkLight}
+                                placeholder={t(selectedGender)}
+                                
                                 onChangeText={handleChange('Gender')}
                                 onBlur={handleBlur('Gender')}
                                 isPicker={true}
@@ -283,7 +363,8 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t("Education level")}
                                 icon="person"
-                                placeholder={t("Academic")}
+                                placeholder={t(selectedAcademicStatus)}
+                                // placeholder={t('Academic')}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Education')}
                                 onBlur={handleBlur('Education')}
@@ -294,7 +375,8 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t("Height (cm)")}
                                 icon="person"
-                                placeholder="175"
+                                // placeholder="175"
+                                placeholder={userHeight}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Height')}
                                 onBlur={handleBlur('Height')}
@@ -303,7 +385,8 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t("Weight (kg)")}
                                 icon="person"
-                                placeholder="75"
+                                // placeholder="75"
+                                placeholder={userWeight}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Weight')}
                                 onBlur={handleBlur('Weight')}
