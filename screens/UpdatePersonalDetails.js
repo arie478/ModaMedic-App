@@ -37,7 +37,7 @@ const UpdatePersonalDetails = ({navigation}) => {
     const [date, setDate] = useState(new Date(2000, 0, 1));
     const [dob, setDob] = useState();
     const [showSmoke, setShowSmoke] = useState(false);
-    const [selectedSmoke, setSelectedSmoke] = useState("");
+    const [selectedSmoke, setSelectedSmoke] = useState('');
     const [showGender, setShowGender] = useState(false);
     const [selectedGender, setSelectedGender] = useState('');
     const [showAcademicStatus, setShowAcademicStatus] = useState(false);
@@ -127,35 +127,35 @@ const UpdatePersonalDetails = ({navigation}) => {
             });
 
             if (usrInfo.data["Gender"] === null || usrInfo.data["Gender"] === "") {
-                setSelectedGender('No data');
+                setSelectedGender('Male');
             } else {
                 const gender = usrInfo.data["Gender"].toString();
                 setSelectedGender(gender);
             }
             
             if (usrInfo.data["Smoke"] === null || usrInfo.data["Smoke"] === "") {
-                setSelectedSmoke("No data");
+                setSelectedSmoke("I don't smoke");
             } else {
                 const smoke = usrInfo.data["Smoke"].toString();
                 setSelectedSmoke(smoke);
             }
             
             if (usrInfo.data["Education"] === null || usrInfo.data["Education"] === "") {
-                setSelectedAcademicStatus("No data");
+                setSelectedAcademicStatus("Academic");
             } else {
                 const education = usrInfo.data["Education"].toString();
                 setSelectedAcademicStatus(education);
             }
             
             if (usrInfo.data["Height"] === null || usrInfo.data["Height"] === "") {
-                setUserHeight('No data');
+                setUserHeight('0');
             } else {
                 const height = usrInfo.data["Height"].toString();
                 setUserHeight(height);
             }
             
             if (usrInfo.data["Weight"] === null || usrInfo.data["Weight"] === "") {
-                setUserWeight('No data');
+                setUserWeight('0');
             } else {
                 const weight = usrInfo.data["Weight"].toString();
                 setUserWeight(weight);
@@ -213,7 +213,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                         </View>
                     </View>
                 </Modal>
-                <Modal animationType="fade" visible={showSmoke} transparent={false}>
+                <Modal animationType="fade" visible={showSmoke} transparent={true}>
                     <View style={{
                         flex: 1,
                         alignItems: 'center',
