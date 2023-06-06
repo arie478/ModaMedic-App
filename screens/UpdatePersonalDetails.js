@@ -325,7 +325,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <MyTextInput
                                 label={t("Date of Birth")}
                                 icon="calendar"
-                                placeholder="YYYY - MM - DD" //TODO get personal birth date from server
+                                placeholder="YYYY - MM - DD" 
                                 // placeholder={dob}
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('BirthDate')}
