@@ -47,6 +47,12 @@ import Header from "react-native/Libraries/NewAppScreen/components/Header";
 
 import componentProviderInstrumentationHook from "react-native-web/dist/exports/AppRegistry";
 
+// This line imports four scaling functions from the react-native-size-matters library
+import { scale, verticalScale, moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+
+
+
+
 const { brand, darkLight, primary } = Colors;
 
 const googleFitScopes = [
@@ -248,11 +254,31 @@ const Welcome = ({ navigation }) => {
 			<InnerContainer>
 				<WelcomeContainerHeader
 					style={{
-						flex: 0,
-						backgroundColor: 'transparent',
+						/*
+						 scale(size: number): A function that returns a linearly scaled result of the
+						 provided size based on your device's screen width.
+						 It helps in scaling components horizontally.
+
+						 verticalScale(size: number): A function that returns a linearly scaled result of the
+						 provided size based on your device's screen height.
+						 It helps in scaling components vertically.
+
+						 moderateScale(size: number, factor?: number): A function that scales the
+						 provided size based on your device's screen width,
+						 but with the ability to control the resize factor.
+						 By default, the resize factor is 0.5. It allows for non-linear scaling,
+						 useful for achieving a balanced scaling effect.
+
+						 moderateVerticalScale(size: number, factor?: number): Similar to moderateScale,
+						 but scales the size based on your device's screen height instead of width.
+
+						 These scaling functions are useful for creating responsive designs in React Native by
+						 scaling components and styles based on the device's screen dimensions.
+						*/
 						alignItems: 'center',
-						justifyContent: 'space-evenly',
-						paddingTop: 80
+						paddingTop: verticalScale(50),
+						height: verticalScale(100),
+						width: scale(320)
 					}}>
 					<SwitchSelector
 						//initial={i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}
@@ -284,18 +310,22 @@ const Welcome = ({ navigation }) => {
 				{/*Have the selection picker for the translation*/}
 				<View
 					style={{
-						flex: 0,
-						backgroundColor: 'transparent',
 						alignItems: 'center',
 						justifyContent: 'space-evenly',
-						position: "relative"
+						height: verticalScale(100),
+						width: scale(200)
 					}}>
 					<PageTitle welcome={true}>{t('Welcome')}</PageTitle>
 					<SubTitle welcome={true}>{name || First_Name || 'Hello User'}</SubTitle>
 				</View>
 
 				<WelcomeContainer
-					>
+					style={{
+						justifyContent: 'space-evenly',
+						height: verticalScale(350),
+						width: scale(350),
+						padding: moderateScale(300)
+					}}>
 
 					{/*<Avatar welcomeLeftIcon={true} source={require('../assets/notif_icon.png')} />*/}
 					<StyledFormArea>
@@ -303,19 +333,23 @@ const Welcome = ({ navigation }) => {
 						{/* <SubTitle welcomeHeader={true}>{t('Surgery Date')}: 19/09/2023</SubTitle> */}
 
 						<StyledButton welcome={true} onPress={() => navigation.navigate('DailyQuestion')}>
-							<Fontisto name="checkbox-active" color={primary} size={15} />
+							<Fontisto name="checkbox-active" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Daily Questionnaires')}</ButtonText>
 						</StyledButton>
 						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
-							<Fontisto name="table-1" color={primary} size={15} />
+							<Fontisto name="table-1" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Life Quality Questionnaires')}</ButtonText>
 						</StyledButton>
+						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
+							<Fontisto name="table-1" color={primary} size={verticalScale(15)} />
+							<ButtonText welcome={true}>  {t('Affected Area Specific Questionnaires')}</ButtonText>
+						</StyledButton>
 						<StyledButton onPress={() => navigation.navigate('HomeVideoExercise')} welcome={true}>
-							<Fontisto name="youtube-play" color={primary} size={15} />
+							<Fontisto name="youtube-play" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Exercise with home videos')}</ButtonText>
 						</StyledButton>
 						<StyledButton welcome={true} onPress={() => navigation.navigate('PersonalDetails')}>
-							<Fontisto name="person" color={primary} size={15} />
+							<Fontisto name="person" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Personal Information')}</ButtonText>
 						</StyledButton>
 
@@ -324,7 +358,7 @@ const Welcome = ({ navigation }) => {
 							style={accessToken && { backgroundColor: 'gray'}}
 							google={true}
 							onPress={() => promptAsync({ showInRecents: true })}>
-							<Fontisto name="google" color={primary} size={15}    />
+							<Fontisto name="google" color={primary} size={verticalScale(15)}    />
 							<ButtonText   google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
 						</StyledButton>
 

@@ -13,6 +13,10 @@ import {useTranslation} from "react-i18next";
 // Imports library to handle in app notifications
 import * as Notifications from 'expo-notifications';
 
+// This line imports four scaling functions from the react-native-size-matters library
+import { scale, verticalScale, moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+
+
 const DailyQuestion = ({ navigation }) => {
 	const { top } = useSafeAreaInsets();
 	const colors = [
@@ -38,8 +42,8 @@ const DailyQuestion = ({ navigation }) => {
 	const {t} = useTranslation();
 
 	return (
-		<View style={[styles.container, { paddingTop: top + 30 }]}>
-			<Text style={{ fontSize: 20, textAlign: 'center' }}>{t("How would you rank your most severe pain you experienced today?")}</Text>
+		<View style={[styles.container, { paddingTop: top + verticalScale(30) }]}>
+			<Text style={{ fontSize: moderateScale(20), textAlign: 'center' }}>{t("How would you rank your most severe pain you experienced today?")}</Text>
 			<View style={styles.painList}>
 				<Text style={{ textAlign: 'center' }}>{t("I did not experience pain at all")}</Text>
 
@@ -48,7 +52,7 @@ const DailyQuestion = ({ navigation }) => {
 						key={color}
 						onPress={() => navigation.navigate('DailyQuestionMedication', { painLevel: index + 1 })}>
 						<View key={`${color}${index}`} style={[{ backgroundColor: color }, styles.pain]}>
-							<Text style={{ fontSize: 18 }}>{index + 1}</Text>
+							<Text style={{ fontSize: moderateScale(18) }}>{index + 1}</Text>
 						</View>
 					</TouchableOpacity>
 				))}
@@ -63,10 +67,11 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		alignItems: 'center',
-		paddingHorizontal: 5,
+		paddingHorizontal: moderateScale(5),
+		height: verticalScale(200),
 	},
-	painList: { marginTop: 10 },
-	pain: { alignItems: 'center', justifyContent: 'center', width: 300, height: 40, marginVertical: 4, borderRadius: 8 },
+	painList: { marginTop: verticalScale(10) },
+	pain: { alignItems: 'center', justifyContent: 'center', width: scale(250), height: verticalScale(40), marginVertical: moderateScale(4), borderRadius: 8 },
 });
 
 
@@ -85,7 +90,7 @@ export const DailyQuestionMedication = ({ route, navigation }) => {
 			trigger: {
 				hour: NOTIFICATION_HOUR,
 				minute: 0,
-				repeats: true,
+				repeats: false,
 			},
 		});
 	}
