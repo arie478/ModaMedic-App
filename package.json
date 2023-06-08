@@ -1,5 +1,5 @@
 {
-  "name": "moda-app-react-native",
+  "name": "ModaMedic",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
