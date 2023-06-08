@@ -42,6 +42,8 @@ const UpdatePersonalDetails = ({navigation}) => {
     const [selectedGender, setSelectedGender] = useState('');
     const [showAcademicStatus, setShowAcademicStatus] = useState(false);
     const [selectedAcademicStatus, setSelectedAcademicStatus] = useState('');
+    const [showWorkType, setShowWorkType] = useState(false);
+    const [selectedWorkType, setSelectedWorkType] = useState('');
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
     const [userHeight, setUserHeight] = useState();
@@ -76,6 +78,11 @@ const UpdatePersonalDetails = ({navigation}) => {
     const showAcademicStatusPicker = () => {
         console.log('showAcademicStatusPicker');
         setShowAcademicStatus(true);
+    };
+
+    const showWorkTypePicker = () => {
+        console.log('showWorkTypePicker');
+        setShowWorkType(true);
     };
 
     const handleUpdate = (data, setSubmitting) => {
@@ -167,7 +174,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                 const bDate = new Date(usrInfo.data["BirthDate"]);
                 setDob(bDate);
             }            
-            
+            setSelectedWorkType("Office");
 
           } catch (error) {
             console.log('error', error);
@@ -220,7 +227,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                         justifyContent: 'center',
                         backgroundColor: 'rgba(1,1,1,0.3)'
                     }}>
-                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}>
+                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}> 
                             <Picker
                                 selectedValue={selectedSmoke}
                                 onValueChange={(itemValue, itemIndex) => setSelectedSmoke(itemValue)}
@@ -282,6 +289,28 @@ const UpdatePersonalDetails = ({navigation}) => {
                             <View style={{width: 330}}>
                                 <Button color={'black'} title={t("Select your education level")}
                                         onPress={() => setShowAcademicStatus(false)}/>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+                <Modal animationType="fade" visible={showWorkType} transparent={true}>
+                    <View style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(1,1,1,0.3)'
+                    }}>
+                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}>
+                            <Picker
+                                selectedValue={selectedWorkType}
+                                onValueChange={(itemValue, itemIndex) => setSelectedWorkType(itemValue)}
+                            >
+                                <Picker.Item label={t("Office")} value={t("Office")}/>
+                                <Picker.Item label={t("Physical")} value={t("Physical")}/>
+                            </Picker>
+                            <View style={{width: 330}}>
+                                <Button color={'black'} title={t("Select the nature of work")} //nature of work  or physical
+                                        onPress={() => setShowWorkType(false)}/>
                             </View>
                         </View>
                     </View>
@@ -373,11 +402,23 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 showPicker={showAcademicStatusPicker}
                             />
                             <MyTextInput
+                                label={t("nature of work")}
+                                icon="person"
+                                placeholder={t(selectedWorkType)}
+                                // placeholder={t('Academic')}
+                                placeholderTextColor={darkLight}
+                                // onChangeText={handleChange('Education')}
+                                // onBlur={handleBlur('Education')}
+                                isPicker={true}
+                                value={selectedWorkType.toString()}
+                                showPicker={showWorkTypePicker}
+                            />
+                            <MyTextInput
                                 label={t("Height (cm)")}
                                 icon="person"
                                 // placeholder="175"
                                 placeholder={userHeight}
-                                placeholderTextColor={darkLight}
+                                // placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Height')}
                                 onBlur={handleBlur('Height')}
                                 value={values.Height}
@@ -387,7 +428,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 icon="person"
                                 // placeholder="75"
                                 placeholder={userWeight}
-                                placeholderTextColor={darkLight}
+                                // placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Weight')}
                                 onBlur={handleBlur('Weight')}
                                 value={values.Weight}
