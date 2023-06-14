@@ -211,7 +211,7 @@ const Signup = ({ navigation }) => {
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange('BirthDate')}
                   onBlur={handleBlur('BirthDate')}
-                  value={dob ? dob.toString() : ''}
+                  value={dob ? dob.toLocaleDateString('en-GB').toString() : ''}
                   isDate={true}
                   editable={false}
                   showDatePicker={showDatePicker}

@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {Formik} from 'formik';
 import {Ionicons} from '@expo/vector-icons';
+import i18n from '../assets/translations/i18n';
 
 import {
     ButtonText,
@@ -42,8 +43,6 @@ const UpdatePersonalDetails = ({navigation}) => {
     const [selectedGender, setSelectedGender] = useState('');
     const [showAcademicStatus, setShowAcademicStatus] = useState(false);
     const [selectedAcademicStatus, setSelectedAcademicStatus] = useState('');
-    const [showWorkType, setShowWorkType] = useState(false);
-    const [selectedWorkType, setSelectedWorkType] = useState('');
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
     const [userHeight, setUserHeight] = useState();
@@ -80,20 +79,52 @@ const UpdatePersonalDetails = ({navigation}) => {
         setShowAcademicStatus(true);
     };
 
-    const showWorkTypePicker = () => {
-        console.log('showWorkTypePicker');
-        setShowWorkType(true);
+    // Function to get the translated value or fallback to the original value
+    const getTranslatedValue = (inputKey) => {
+        const originalLanguage = 'en'; // Replace 'en' with your original language code
+        
+        // Get the current language from i18n instance
+        const currentLanguage = i18n.language;
+
+        // Retrieve the translation for the current language
+        const translation = i18n.options.resources[currentLanguage];
+
+        // Reverse lookup - Find the translation key based on the provided value
+        const translationKey = Object.keys(translation.translation).find((key) => {
+            return translation.translation[key] === inputKey;
+        });
+        console.log("translationKey:  " + translationKey);
+        if (translationKey) {
+          return translationKey;
+        }
+      
+        // If translation doesn't exist, fallback to the original language value
+        const originalTranslation = i18n.options.resources[originalLanguage];
+        
+        const originalKey = Object.keys(originalTranslation).find((originalTranslationKey) => {
+          return originalTranslation[originalTranslationKey] === inputKey;
+        });
+      
+        if (originalKey) {
+          return originalKey;
+        }
+      
+        // If the original translation is also missing, return null
+        return null;
     };
 
     const handleUpdate = (data, setSubmitting) => {
+        const backendGender = getTranslatedValue(selectedGender);
+        const backendSmoke = getTranslatedValue(selectedSmoke);
+        const backendAcademicStatus = getTranslatedValue(selectedAcademicStatus);
         handleMessage(null);
         const url = ENV.API_URL.personalDetalis; //Todo change to
         const headers = {'x-auth-token': storedCredentials.token};
         data = {
             ...data,
-            "Gender": t(selectedGender, {lng: 'en'}),
-            "Smoke": t(selectedSmoke, {lng: 'en'}),
-            "Education": t(selectedAcademicStatus, {lng: 'en'}),
+            "Gender": backendGender,
+            "Smoke": backendSmoke,
+            "Education": backendAcademicStatus,
             "BirthDate": dob.getTime()
         }
         axios
@@ -174,7 +205,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                 const bDate = new Date(usrInfo.data["BirthDate"]);
                 setDob(bDate);
             }            
-            setSelectedWorkType("Office");
+            
 
           } catch (error) {
             console.log('error', error);
@@ -227,7 +258,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                         justifyContent: 'center',
                         backgroundColor: 'rgba(1,1,1,0.3)'
                     }}>
-                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}> 
+                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}>
                             <Picker
                                 selectedValue={selectedSmoke}
                                 onValueChange={(itemValue, itemIndex) => setSelectedSmoke(itemValue)}
@@ -293,28 +324,6 @@ const UpdatePersonalDetails = ({navigation}) => {
                         </View>
                     </View>
                 </Modal>
-                <Modal animationType="fade" visible={showWorkType} transparent={true}>
-                    <View style={{
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(1,1,1,0.3)'
-                    }}>
-                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}>
-                            <Picker
-                                selectedValue={selectedWorkType}
-                                onValueChange={(itemValue, itemIndex) => setSelectedWorkType(itemValue)}
-                            >
-                                <Picker.Item label={t("Office")} value={t("Office")}/>
-                                <Picker.Item label={t("Physical")} value={t("Physical")}/>
-                            </Picker>
-                            <View style={{width: 330}}>
-                                <Button color={'black'} title={t("Select the nature of work")} //nature of work  or physical
-                                        onPress={() => setShowWorkType(false)}/>
-                            </View>
-                        </View>
-                    </View>
-                </Modal>
                 <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')}/>
                 <PageTitle welcome={true}>{t('Update Personal Information')}</PageTitle>
                 <SubTitle welcome={true}>{name || First_Name || 'Hello User'}</SubTitle>
@@ -359,7 +368,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('BirthDate')}
                                 onBlur={handleBlur('BirthDate')}
-                                value={dob ? dob.toString() : ''}
+                                value={dob ? dob.toLocaleDateString('en-GB').toString() : ''}
                                 isDate={true}
                                 editable={false}
                                 showDatePicker={showDatePicker}
@@ -373,7 +382,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Smoke')}
                                 onBlur={handleBlur('Smoke')}
                                 isPicker={true}
-                                value={selectedSmoke.toString()}
+                                value={selectedSmoke ? t(selectedSmoke.toString()) : ''}
                                 showPicker={showSmokePicker}
                             />
                             <MyTextInput
@@ -386,7 +395,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Gender')}
                                 onBlur={handleBlur('Gender')}
                                 isPicker={true}
-                                value={selectedGender.toString()}
+                                value={selectedGender ? t(selectedGender.toString()) : ''}
                                 showPicker={showGenderPicker}
                             />
                             <MyTextInput
@@ -398,40 +407,28 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Education')}
                                 onBlur={handleBlur('Education')}
                                 isPicker={true}
-                                value={selectedAcademicStatus.toString()}
+                                value={selectedAcademicStatus ? t(selectedAcademicStatus.toString()) : ''}
                                 showPicker={showAcademicStatusPicker}
-                            />
-                            <MyTextInput
-                                label={t("nature of work")}
-                                icon="person"
-                                placeholder={t(selectedWorkType)}
-                                // placeholder={t('Academic')}
-                                placeholderTextColor={darkLight}
-                                // onChangeText={handleChange('Education')}
-                                // onBlur={handleBlur('Education')}
-                                isPicker={true}
-                                value={selectedWorkType.toString()}
-                                showPicker={showWorkTypePicker}
                             />
                             <MyTextInput
                                 label={t("Height (cm)")}
                                 icon="person"
                                 // placeholder="175"
                                 placeholder={userHeight}
-                                // placeholderTextColor={darkLight}
+                                placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Height')}
                                 onBlur={handleBlur('Height')}
-                                value={values.Height}
+                                value={userHeight ? values.Height : ''}
                             />
                             <MyTextInput
                                 label={t("Weight (kg)")}
                                 icon="person"
                                 // placeholder="75"
                                 placeholder={userWeight}
-                                // placeholderTextColor={darkLight}
+                                placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Weight')}
                                 onBlur={handleBlur('Weight')}
-                                value={values.Weight}
+                                value={userWeight ? values.Weight : ''}
                             />
 
                             <MsBox type={messageType}>{message}</MsBox>
