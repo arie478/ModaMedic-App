@@ -1,3 +1,8 @@
+// import { LogBox } from 'react-native';
+// LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+// LogBox.ignoreAllLogs();//Ignore all log notifications
+
+
 import React, {useEffect, useState} from 'react';
 import RootStack from './navigators/RootStack';
 import AppLoading from 'expo-app-loading';

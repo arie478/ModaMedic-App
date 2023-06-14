@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {Formik} from 'formik';
 import {Ionicons} from '@expo/vector-icons';
+import i18n from '../assets/translations/i18n';
 
 import {
     ButtonText,
@@ -79,15 +80,52 @@ const UpdatePersonalDetails = ({navigation}) => {
         setShowAcademicStatus(true);
     };
 
+    // Function to get the translated value or fallback to the original value
+    const getTranslatedValue = (inputKey) => {
+        const originalLanguage = 'en'; // Replace 'en' with your original language code
+        
+        // Get the current language from i18n instance
+        const currentLanguage = i18n.language;
+
+        // Retrieve the translation for the current language
+        const translation = i18n.options.resources[currentLanguage];
+
+        // Reverse lookup - Find the translation key based on the provided value
+        const translationKey = Object.keys(translation.translation).find((key) => {
+            return translation.translation[key] === inputKey;
+        });
+        console.log("translationKey:  " + translationKey);
+        if (translationKey) {
+          return translationKey;
+        }
+      
+        // If translation doesn't exist, fallback to the original language value
+        const originalTranslation = i18n.options.resources[originalLanguage];
+        
+        const originalKey = Object.keys(originalTranslation).find((originalTranslationKey) => {
+          return originalTranslation[originalTranslationKey] === inputKey;
+        });
+      
+        if (originalKey) {
+          return originalKey;
+        }
+      
+        // If the original translation is also missing, return null
+        return null;
+    };
+
     const handleUpdate = (data, setSubmitting) => {
+        const backendGender = getTranslatedValue(selectedGender);
+        const backendSmoke = getTranslatedValue(selectedSmoke);
+        const backendAcademicStatus = getTranslatedValue(selectedAcademicStatus);
         handleMessage(null);
         const url = ENV.API_URL.personalDetalis; //Todo change to
         const headers = {'x-auth-token': storedCredentials.token};
         data = {
             ...data,
-            "Gender": t(selectedGender, {lng: 'en'}),
-            "Smoke": t(selectedSmoke, {lng: 'en'}),
-            "Education": t(selectedAcademicStatus, {lng: 'en'}),
+            "Gender": backendGender,
+            "Smoke": backendSmoke,
+            "Education": backendAcademicStatus,
             "BirthDate": dob.getTime()
         }
         axios
@@ -359,7 +397,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('BirthDate')}
                                 onBlur={handleBlur('BirthDate')}
-                                value={dob ? dob.toString() : ''}
+                                value={dob ? dob.toLocaleDateString('en-GB').toString() : ''}
                                 isDate={true}
                                 editable={false}
                                 showDatePicker={showDatePicker}
@@ -373,7 +411,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Smoke')}
                                 onBlur={handleBlur('Smoke')}
                                 isPicker={true}
-                                value={selectedSmoke.toString()}
+                                value={selectedSmoke ? t(selectedSmoke.toString()) : ''}
                                 showPicker={showSmokePicker}
                             />
                             <MyTextInput
@@ -386,7 +424,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Gender')}
                                 onBlur={handleBlur('Gender')}
                                 isPicker={true}
-                                value={selectedGender.toString()}
+                                value={selectedGender ? t(selectedGender.toString()) : ''}
                                 showPicker={showGenderPicker}
                             />
                             <MyTextInput
@@ -398,7 +436,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 onChangeText={handleChange('Education')}
                                 onBlur={handleBlur('Education')}
                                 isPicker={true}
-                                value={selectedAcademicStatus.toString()}
+                                value={selectedAcademicStatus ? t(selectedAcademicStatus.toString()) : ''}
                                 showPicker={showAcademicStatusPicker}
                             />
                             <MyTextInput
@@ -409,7 +447,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Height')}
                                 onBlur={handleBlur('Height')}
-                                value={values.Height}
+                                value={userHeight ? values.Height : ''}
                             />
                             <MyTextInput
                                 label={t("Weight (kg)")}
@@ -419,7 +457,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('Weight')}
                                 onBlur={handleBlur('Weight')}
-                                value={values.Weight}
+                                value={userWeight ? values.Weight : ''}
                             />
 
                             <MsBox type={messageType}>{message}</MsBox>
