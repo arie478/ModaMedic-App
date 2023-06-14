@@ -214,39 +214,39 @@ const Welcome = ({ navigation }) => {
 
 
 
-	/**
-	 * Changes the language of the app and stores the new language in AsyncStorage.
-	 * @param {string} value - The language code to switch to.
-	 */
-	/*
-	This function takes a string parameter value which is the language code to switch to.
-	It uses the changeLanguage function of the i18n instance to change the language,
-	and stores the new language in AsyncStorage using the storeLanguage function.
-	If an error occurs, it logs the error to the console.
-	*/
-	const changeLanguage = value => {
-		i18n
-			.changeLanguage(value)
-			.then(() => storeLanguage(value))
-			.catch(err => console.log(err));
-	};
-
-	/**
-	 * Stores the given language code in AsyncStorage.
-	 * @param {string} value - The language code to store.
-	 */
-	/*
-	This function takes a string parameter value which is the language code to store.
-	It uses the setItem function of AsyncStorage to store the language code in AsyncStorage.
-	If an error occurs, it catches the error and does nothing.
-	 */
-	const storeLanguage = async (value) => {
-		try {
-			await AsyncStorage.setItem('storedLanguage', value)
-		} catch (e) {
-			// saving error
-		}
-	}
+	// /**
+	//  * Changes the language of the app and stores the new language in AsyncStorage.
+	//  * @param {string} value - The language code to switch to.
+	//  */
+	// /*
+	// This function takes a string parameter value which is the language code to switch to.
+	// It uses the changeLanguage function of the i18n instance to change the language,
+	// and stores the new language in AsyncStorage using the storeLanguage function.
+	// If an error occurs, it logs the error to the console.
+	// */
+	// const changeLanguage = value => {
+	// 	i18n
+	// 		.changeLanguage(value)
+	// 		.then(() => storeLanguage(value))
+	// 		.catch(err => console.log(err));
+	// };
+	//
+	// /**
+	//  * Stores the given language code in AsyncStorage.
+	//  * @param {string} value - The language code to store.
+	//  */
+	// /*
+	// This function takes a string parameter value which is the language code to store.
+	// It uses the setItem function of AsyncStorage to store the language code in AsyncStorage.
+	// If an error occurs, it catches the error and does nothing.
+	//  */
+	// const storeLanguage = async (value) => {
+	// 	try {
+	// 		await AsyncStorage.setItem('storedLanguage', value)
+	// 	} catch (e) {
+	// 		// saving error
+	// 	}
+	// }
 
 		return (
 		<>
@@ -280,29 +280,29 @@ const Welcome = ({ navigation }) => {
 						height: verticalScale(100),
 						width: scale(320)
 					}}>
-					<SwitchSelector
-						//initial={i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}
-						initial={0}
+					{/*<SwitchSelector*/}
+					{/*	//initial={i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}*/}
+					{/*	initial={0}*/}
 
-						value = {i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}
+					{/*	value = {i18n.language === 'en' ? 0 : i18n.language === 'he' ? 1 : i18n.language === 'ru' ? 2 : 3}*/}
 
-						onPress={selectedLanguage => changeLanguage(selectedLanguage)}
+					{/*	onPress={selectedLanguage => changeLanguage(selectedLanguage)}*/}
 
-						textColor= '#9370db'
-						selectedColor= '#f8f8ff'
-						buttonColor= '#9370db'
-						borderColor= '#9370db'
-						backgroundColor = '#f8f8ff'
-						borderRadius = {50}
-						hasPadding
+					{/*	textColor= '#9370db'*/}
+					{/*	selectedColor= '#f8f8ff'*/}
+					{/*	buttonColor= '#9370db'*/}
+					{/*	borderColor= '#9370db'*/}
+					{/*	backgroundColor = '#f8f8ff'*/}
+					{/*	borderRadius = {50}*/}
+					{/*	hasPadding*/}
 
-						options={[
-							{ label: "English", value: "en",  },
-							{ label: "עברית", value: "he", },
-							{ label: "Русский", value: "ru",  },
-							{ label: "عربي", value: "ar",  }
-						]}
-					/>
+					{/*	options={[*/}
+					{/*		{ label: "English", value: "en",  },*/}
+					{/*		{ label: "עברית", value: "he", },*/}
+					{/*		{ label: "Русский", value: "ru",  },*/}
+					{/*		{ label: "عربي", value: "ar",  }*/}
+					{/*	]}*/}
+					{/*/>*/}
 
 				</WelcomeContainerHeader>
 				{/*<WelcomeImage resizeMode="contain" source={require('../assets/man.jpg')} />*/}
@@ -336,7 +336,7 @@ const Welcome = ({ navigation }) => {
 							<Fontisto name="checkbox-active" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Daily Questionnaires')}</ButtonText>
 						</StyledButton>
-						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
+						<StyledButton welcome={true} onPress={() => navigation.navigate('LifeQuality1')}>
 							<Fontisto name="table-1" color={primary} size={verticalScale(15)} />
 							<ButtonText welcome={true}>  {t('Life Quality Questionnaires')}</ButtonText>
 						</StyledButton>

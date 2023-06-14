@@ -18,7 +18,7 @@ import {
     StyledButton,
     StyledFormArea,
     StyledInputLabel,
-    StyledTextInput,
+    StyledTextInput, WelcomeContainerHeader,
 } from '../components/styles';
 import {ActivityIndicator, Alert, Button, Modal, Platform, ScrollView, TouchableOpacity, View} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -29,6 +29,7 @@ import {CredentialsContext} from '../components/CredentialsContext';
 
 import ENV from "../environment";
 import {useTranslation} from "react-i18next";
+import {scale, verticalScale} from "react-native-size-matters";
 
 const {brand, darkLight, primary} = Colors;
 
@@ -153,7 +154,35 @@ const UpdateSurgeryDate = ({navigation}) => {
                         </View>
                     </Modal>
                 </StyledFormArea>
-                <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')}/>
+                <WelcomeContainerHeader
+                    style={{
+                        /*
+                         scale(size: number): A function that returns a linearly scaled result of the
+                         provided size based on your device's screen width.
+                         It helps in scaling components horizontally.
+
+                         verticalScale(size: number): A function that returns a linearly scaled result of the
+                         provided size based on your device's screen height.
+                         It helps in scaling components vertically.
+
+                         moderateScale(size: number, factor?: number): A function that scales the
+                         provided size based on your device's screen width,
+                         but with the ability to control the resize factor.
+                         By default, the resize factor is 0.5. It allows for non-linear scaling,
+                         useful for achieving a balanced scaling effect.
+
+                         moderateVerticalScale(size: number, factor?: number): Similar to moderateScale,
+                         but scales the size based on your device's screen height instead of width.
+
+                         These scaling functions are useful for creating responsive designs in React Native by
+                         scaling components and styles based on the device's screen dimensions.
+                        */
+                        alignItems: 'center',
+                        paddingTop: verticalScale(50),
+                        height: verticalScale(100),
+                        width: scale(320)
+                    }}>
+                </WelcomeContainerHeader>
                 <PageTitle welcome={true}>{t("Surgery Date")}</PageTitle>
 
                 <Formik

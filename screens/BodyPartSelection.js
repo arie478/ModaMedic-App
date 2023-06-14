@@ -265,7 +265,7 @@ const BodyPartSelection = ({ navigation }) => {
 						position: "relative",
 						paddingTop: 50 // or marginTop: 50, adjust the value as needed
 					}}>
-					<PageTitle style={{ fontSize: 20 }}>{t('Select your problematic areas')}</PageTitle>
+					<PageTitle style={{ fontSize: 20 }}>{t('Select your affected areas')}</PageTitle>
 				</View>
 
 				<View>
@@ -275,7 +275,7 @@ const BodyPartSelection = ({ navigation }) => {
 				<WelcomeContainer>
 					<StyledFormArea>
 						<StyledButton  onPress={() =>
-							navigation.navigate('LifeQualityQuestion', {
+							navigation.navigate('CustomQuestion', {
 								questionNum: 0,
 								questionsData: filteredQuestions,
 							})

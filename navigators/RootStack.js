@@ -14,14 +14,19 @@ import BodyPartSelection from "../screens/BodyPartSelection";
 import UpdateSurgeryDate from '../screens/UpdateSurgeryDate';
 import DailyQuestion, {
 	DailyQuestionMedication,
+} from '../screens/DailyQuestion';
+import {LifeQualityQuestion} from "../screens/LifeQualityQuestion";
+
+import  {
 	LifeQuality1,
 	LifeQuality2,
 	LifeQuality3,
 	LifeQuality4,
 	LifeQuality5,
-  	LifeQuality6,
-} from '../screens/DailyQuestion';
-import {LifeQualityQuestion} from "../screens/LifeQualityQuestion";
+	LifeQuality6,
+} from '../screens/LifeQualityQuestion';
+import {CustomQuestion} from "../screens/CustomQuestion";
+import Landing from "../screens/Landing";
 
 const { primary, tertiary } = Colors;
 const Stack = createNativeStackNavigator();
@@ -53,17 +58,18 @@ const RootStack = () => {
 								<Stack.Screen name="DailyQuestion" component={DailyQuestion} />
 								<Stack.Screen name="DailyQuestionMedication" component={DailyQuestionMedication} />
 								<Stack.Screen name="BodyPartSelection" component={BodyPartSelection} />
-								<Stack.Screen name="LifeQualityQuestion" component={LifeQualityQuestion} />
+								<Stack.Screen name="CustomQuestion" component={CustomQuestion} />
 								<Stack.Screen name="UpdateSurgeryDate" component={UpdateSurgeryDate} />
-								{/*<Stack.Screen name="LifeQuality1" component={LifeQuality1} />*/}
-								{/*<Stack.Screen name="LifeQuality2" component={LifeQuality2} />*/}
-								{/*<Stack.Screen name="LifeQuality3" component={LifeQuality3} />*/}
-								{/*<Stack.Screen name="LifeQuality4" component={LifeQuality4} />*/}
-								{/*<Stack.Screen name="LifeQuality5" component={LifeQuality5} />*/}
-								{/*<Stack.Screen name="LifeQuality6" component={LifeQuality6} />*/}
+								<Stack.Screen name="LifeQuality1" component={LifeQuality1} />
+								<Stack.Screen name="LifeQuality2" component={LifeQuality2} />
+								<Stack.Screen name="LifeQuality3" component={LifeQuality3} />
+								<Stack.Screen name="LifeQuality4" component={LifeQuality4} />
+								<Stack.Screen name="LifeQuality5" component={LifeQuality5} />
+								<Stack.Screen name="LifeQuality6" component={LifeQuality6} />
 							</>
 						) : (
 							<>
+								<Stack.Screen name="Landing" component={Landing} />
 								<Stack.Screen name="Login" component={Login} />
 								<Stack.Screen name="Signup" component={Signup} />
 							</>
