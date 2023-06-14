@@ -100,6 +100,7 @@ const UpdateSurgeryDate = ({navigation}) => {
                 Alert.alert(t("Surgery date successfully updated"))
                 setSubmitting(false);
                 navigation.goBack();
+                // navigation.navigate('PersonalDetails');
             })
             .catch((error) => {
                 console.log('error', error);
@@ -196,7 +197,7 @@ const UpdateSurgeryDate = ({navigation}) => {
                                 placeholderTextColor={darkLight}
                                 onChangeText={handleChange('DateOfSurgery')}
                                 onBlur={handleBlur('DateOfSurgery')}
-                                value={SurgeryDate ? SurgeryDate.toString() : ''}
+                                value={SurgeryDate ? SurgeryDate.toLocaleDateString('en-GB').toString() : ''}
                                 isDate={true}
                                 editable={false}
                                 showDatePicker={showDatePicker}
