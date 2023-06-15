@@ -47,6 +47,8 @@ const UpdatePersonalDetails = ({navigation}) => {
     const [messageType, setMessageType] = useState();
     const [userHeight, setUserHeight] = useState();
     const [userWeight, setUserWeight] = useState();
+    const [showWorkType, setShowWorkType] = useState(false);
+    const [selectedWorkType, setSelectedWorkType] = useState('');
     const {storedCredentials} = useContext(CredentialsContext);
     const { name } = storedCredentials;
 	const { First_Name } = storedCredentials;
@@ -79,6 +81,11 @@ const UpdatePersonalDetails = ({navigation}) => {
         setShowAcademicStatus(true);
     };
 
+    const showWorkTypePicker = () => {
+        console.log('showWorkTypePicker');
+        setShowWorkType(true);
+    };
+    
     // Function to get the translated value or fallback to the original value
     const getTranslatedValue = (inputKey) => {
         const originalLanguage = 'en'; // Replace 'en' with your original language code
@@ -117,6 +124,8 @@ const UpdatePersonalDetails = ({navigation}) => {
         const backendGender = getTranslatedValue(selectedGender);
         const backendSmoke = getTranslatedValue(selectedSmoke);
         const backendAcademicStatus = getTranslatedValue(selectedAcademicStatus);
+        const backendWorkType = getTranslatedValue(selectedWorkType);
+        
         handleMessage(null);
         const url = ENV.API_URL.personalDetalis; //Todo change to
         const headers = {'x-auth-token': storedCredentials.token};
@@ -125,6 +134,7 @@ const UpdatePersonalDetails = ({navigation}) => {
             "Gender": backendGender,
             "Smoke": backendSmoke,
             "Education": backendAcademicStatus,
+            "Phone_Number": selectedWorkType,
             "BirthDate": dob.getTime()
         }
         axios
@@ -205,7 +215,12 @@ const UpdatePersonalDetails = ({navigation}) => {
                 const bDate = new Date(usrInfo.data["BirthDate"]);
                 setDob(bDate);
             }            
-            
+            if (usrInfo.data["Phone_Number"] === null || usrInfo.data["Phone_Number"] === "") {
+                setSelectedWorkType("");
+            } else {
+                const work = usrInfo.data["Phone_Number"].toString();
+                setSelectedWorkType(work);
+            }   
 
           } catch (error) {
             console.log('error', error);
@@ -324,6 +339,28 @@ const UpdatePersonalDetails = ({navigation}) => {
                         </View>
                     </View>
                 </Modal>
+                <Modal animationType="fade" visible={showWorkType} transparent={true}>
+                    <View style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(1,1,1,0.3)'
+                    }}>
+                        <View style={{backgroundColor: 'gray', borderRadius: 8, padding: 6, width: 330, margin: 8}}>
+                            <Picker
+                                selectedValue={selectedWorkType}
+                                onValueChange={(itemValue, itemIndex) => setSelectedWorkType(itemValue)}
+                            >
+                                <Picker.Item label={t("Office")} value={t("Office")}/>
+                                <Picker.Item label={t("Physical")} value={t("Physical")}/>
+                            </Picker>
+                            <View style={{width: 330}}>
+                                <Button color={'black'} title={t("Select the nature of work")} //nature of work  or physical
+                                        onPress={() => setShowWorkType(false)}/>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
                 <PageLogo resizeMode="cover" source={require('../assets/app_logo.png')}/>
                 <PageTitle welcome={true}>{t('Update Personal Information')}</PageTitle>
                 <SubTitle welcome={true}>{name || First_Name || 'Hello User'}</SubTitle>
@@ -409,6 +446,18 @@ const UpdatePersonalDetails = ({navigation}) => {
                                 isPicker={true}
                                 value={selectedAcademicStatus ? t(selectedAcademicStatus.toString()) : ''}
                                 showPicker={showAcademicStatusPicker}
+                            />
+                            <MyTextInput
+                                label={t("Nature of work")}
+                                icon="person"
+                                placeholder={t(selectedWorkType)}
+                                // placeholder={t('Academic')}
+                                placeholderTextColor={darkLight}
+                                onChangeText={handleChange('Phone_Number')}
+                                onBlur={handleBlur('Phone_Number')}
+                                isPicker={true}
+                                value={selectedWorkType ? t(selectedWorkType.toString()) : ''}
+                                showPicker={showWorkTypePicker}
                             />
                             <MyTextInput
                                 label={t("Height (cm)")}
