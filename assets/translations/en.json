@@ -380,6 +380,11 @@
     "I am severely anxious or depressed": "I am severely anxious or depressed",
     "I am extremely anxious or depressed": "I am extremely anxious or depressed",
     "Login": "Login",
-    "Signup": "Signup"
+    "Signup": "Signup",
+
+    "Office": "Office",
+    "Physical": "Physical",
+    "Nature of work": "Nature of work",
+    "Select the nature of work": "Select the nature of work"
     }
   }

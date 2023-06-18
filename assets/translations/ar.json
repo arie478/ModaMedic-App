@@ -418,6 +418,11 @@
     "I am severely anxious or depressed": "أنا قلق بشكل حاد أو مكتئب بشكل حاد",
     "I am extremely anxious or depressed": "أنا شديد القلق أو شديد الاكتئاب",
     "Login": "تسجيل الدخول",
-    "Signup": "اشتراك"
+    "Signup": "اشتراك",
+
+    "Office": "مكتب",
+    "Physical": "بدني",
+    "Nature of work": "طبيعة العمل",
+    "Select the nature of work": "حدد طبيعة العمل"
     }
   }

@@ -417,6 +417,11 @@
     "I am severely anxious or depressed": "Я испытываю сильную тревогу или депрессию",
     "I am extremely anxious or depressed": "Я испытываю крайне сильную тревогу или депрессию",
     "Login": "Войти",
-    "Signup": "Зарегистрироваться"
+    "Signup": "Зарегистрироваться",
+
+    "Office": "Офис",
+    "Physical": "Физический",
+    "Nature of work": "Характер работы",
+    "Select the nature of work": "Выберите характер работы"
     }
   }
