@@ -18,7 +18,7 @@ import {
     StyledButton,
     StyledFormArea,
     StyledInputLabel,
-    StyledTextInput,
+    StyledTextInput, WelcomeContainerHeader,
 } from '../components/styles';
 import {ActivityIndicator, Alert, Button, Modal, Platform, ScrollView, TouchableOpacity, View} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -29,6 +29,7 @@ import {CredentialsContext} from '../components/CredentialsContext';
 
 import ENV from "../environment";
 import {useTranslation} from "react-i18next";
+import {scale, verticalScale} from "react-native-size-matters";
 
 const {brand, darkLight, primary} = Colors;
 

@@ -94,6 +94,7 @@ const Videos = ({ route }) => {
 
   return (
     <>
+
       <PageTitle style={{ marginTop: 50 }} welcome={true}>
         {t("Exercise with home videos")}
       </PageTitle>
