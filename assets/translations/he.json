@@ -422,12 +422,12 @@
     "I am moderately anxious or depressed": "אני חרד/ה או מדוכא/ת במידה בינונית",
     "I am severely anxious or depressed": "אני חרד/ה או מדוכא/ת במידה רבה",
     "I am extremely anxious or depressed": "אני חרד/ה או מדוכא/ת באופן קיצוני",
-    "Login": "התחברות",
-    "Signup": "הרשמות",
+    "Log In": "התחברות",
+    "Sign Up": "הרשמה",
 
     "Office": "משרדית",
     "Physical": "גופנית",
-    "Nature of work": "טבע העבודה",
-    "Select the nature of work": "בחר\י את אופי העבודה"
+    "Nature of work": "אופי עבודה",
+    "Select the nature of work": "בחר/י את אופי העבודה"
     }
   }
