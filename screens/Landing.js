@@ -166,17 +166,20 @@ const Landing = ({ navigation }) => {
 
 				<WelcomeContainer >
 
+
 					<Avatar
 						resizeMode="contain"
 						source={require('../assets/app_logo.png')}
 						style={{ width: scale(300), height: verticalScale(150) }}
 					/>
+					{/*<PageTitle style={{ color: 'black', fontSize: 30, marginTop: 30}}>{t('Hello There!')}</PageTitle>*/}
+					{/*<SubTitle style={{ color: 'grey', fontSize: 20, marginBottom: 30, textAlign: 'center'}}>{t('Automatic identity verification which enable you to verify your identity')}</SubTitle>*/}
 
 					<StyledFormArea
 						style={{
 							justifyContent: 'space-evenly',
 							height: verticalScale(100),
-							width: scale(300),
+							width: scale(270),
 							marginTop: verticalScale(50)
 						}}
 					>
@@ -188,7 +191,7 @@ const Landing = ({ navigation }) => {
 							}}
 
 							onPress={() => navigation.navigate('Login')}>
-							<ButtonText>  {t('Login')}</ButtonText>
+							<ButtonText>{t('Log In')}</ButtonText>
 						</StyledButton>
 						<StyledButton
 							style={{
@@ -199,7 +202,7 @@ const Landing = ({ navigation }) => {
 							}}
 							onPress={() => navigation.navigate('Signup')}
 						>
-							<ButtonText style={{ color: '#9370db' }}>{t('Signup')}</ButtonText>
+							<ButtonText style={{color: '#9370db'}}>{t('Sign Up')}</ButtonText>
 						</StyledButton>
 					</StyledFormArea>
 				</WelcomeContainer>
