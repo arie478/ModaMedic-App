@@ -103,7 +103,7 @@ const VideosCategories = ({ navigation }) => {
               // onPress={() => Alert.alert("This feature will be available in the next update!")}
               home={true}
             >
-              <ButtonText welcome={true}>{categoryName}</ButtonText>
+              <ButtonText welcome={true}>{t(categoryName)}</ButtonText>
             </StyledButton>
           ))}
           {/*<Line />*/}

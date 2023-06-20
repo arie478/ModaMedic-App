@@ -217,7 +217,7 @@ const UpdatePersonalDetails = ({navigation}) => {
                 setDob(bDate);
             }            
             if (usrInfo.data["Phone_Number"] === null || usrInfo.data["Phone_Number"] === "") {
-                setSelectedWorkType("");
+                setSelectedWorkType("Office");
             } else {
                 const work = usrInfo.data["Phone_Number"].toString();
                 setSelectedWorkType(work);

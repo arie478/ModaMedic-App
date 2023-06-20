@@ -98,7 +98,7 @@ const Videos = ({ route }) => {
       <PageTitle style={{ marginTop: 50 }} welcome={true}>
         {t("Exercise with home videos")}
       </PageTitle>
-      <SubTitle style={{ textAlign: 'center' }}>{categoryName}</SubTitle>
+      <SubTitle style={{ textAlign: 'center' }}>{t(categoryName)}</SubTitle>
       <ScrollView>
         <SafeAreaView>
           {videos[categoryName].map(({ id, description }) => (
