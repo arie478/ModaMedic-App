@@ -4,7 +4,7 @@ export const videos = {
         { id: 'sxWDOHwEvpw', description: 'Physiotherapy 2 -Neck and head bending while on the back' },
         { id: 'Dqf6M8GyIbQ', description: 'Physiotherapy 3 - Backwards bending of the neck and head' },
     ],
-    Shoulders: [
+    Shoulder: [
         { id: 'TQ5i2f1AaT4', description: 'פיזיותרפיה 9 - הרמת הכתפיים' },
         { id: 'pGarA-Xhrwk', description: 'פיזיותרפיה 10 - סיבובי כתפיים' },
         { id: 'FZEX5QYJVJg', description: 'פיזיותרפיה 15 - מתיחה של כתף אחורית' },
@@ -65,7 +65,7 @@ export const videos = {
 
 export const videosCategory = [
     'Neck',
-    'Shoulders',
+    'Shoulder',
     'Hands',
     'Chest',
     'Elbow',
