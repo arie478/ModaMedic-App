@@ -184,7 +184,7 @@ const UpdateSurgeryDate = ({navigation}) => {
                         width: scale(320)
                     }}>
                 </WelcomeContainerHeader>
-                <PageTitle welcome={true}>{t("Surgery Date")}</PageTitle>
+                <PageTitle style={{ marginTop: -50 }} welcome={true}>{t("Surgery Date")}</PageTitle>
 
                 <Formik
                     initialValues={{

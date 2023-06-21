@@ -91,7 +91,7 @@ const VideosCategories = ({ navigation }) => {
               width: scale(320)
             }}>
         </WelcomeContainerHeader>
-        <PageTitle style={{ marginTop: 50, fontSize: 28 }} welcome={true}>
+        <PageTitle style={{ marginTop: -50 }} welcome={true}>
           {t("Exercise with home videos")}
         </PageTitle>
 

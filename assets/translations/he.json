@@ -119,6 +119,11 @@
     "What would you say the past two weeks have been like for your well being?": "איך הייתם אומרים שהשבועיים האחרונים היו למצבכם?",
     "On a scale of 0 to 100": "בסולם של 0 עד 100",
     "When the very worst state of health imaginable is 0 and 100 is the healthiest you can possibly imagine": "כאשר מצב הבריאות הגרוע ביותר שניתן להעלות על הדעת הוא 0 ו-100 הוא הבריא ביותר שאתם יכולים לדמיין",
+
+    "We would like to know how good or bad your health is TODAY.": "אנו מעוניינים לדעת עד כמה טוב או רע המצב הבריאותי שלך היום.",
+    "This scale is numbered from 0 to 100.": "סולם זה ממוספר מ-0 עד 100.",
+    "0 means the worst health you can imagine.": "0 מייצג את המצב הבריאותי הגרוע ביותר שאת/ה יכול/ה לדמיין.",
+    "100 means the best health you can imagine.": "100 מייצג את המצב הבריאותי הטוב ביותר שאת/ה יכול/ה לדמיין.",
     "Send answer": "שלח תשובה",
 
     "What is the maximum level of pain you experienced today?": "מהי רמת הכאב המקסימלית שחווית היום?",
@@ -428,6 +433,7 @@
     "Office": "משרדית",
     "Physical": "גופנית",
     "Nature of work": "אופי עבודה",
-    "Select the nature of work": "בחר/י את אופי העבודה"
+    "Select the nature of work": "בחר/י את אופי העבודה",
+    "Personalized Questionnaires": "שאלונים מותאמים אישית"
     }
   }

@@ -209,13 +209,10 @@ export const LifeQuality6 = ({ route, navigation }) => {
                 paddingBottom: bottom,
             }}>
             <View>
-                <Text style={{ fontSize: 20, textAlign: 'center', marginVertical: 4 }}>
-                    {t("What would you say the past two weeks have been like for your well being?")}
-                </Text>
-                <Text style={{ fontSize: 18, textAlign: 'center', marginVertical: 4 }}>{t("On a scale of 0 to 100")}</Text>
-                <Text style={{ fontSize: 16, textAlign: 'center', marginVertical: 4 }}>
-                    {t("When the very worst state of health imaginable is 0 and 100 is the healthiest you can possibly imagine")}
-                </Text>
+                <Text style={{ fontSize: 22, textAlign: 'center', marginVertical: 4 }}>{t("We would like to know how good or bad your health is TODAY.") + "\n"}</Text>
+                <Text style={{ fontSize: 18, textAlign: 'center', marginVertical: 4 }}>{t("This scale is numbered from 0 to 100.")}</Text>
+                <Text style={{ fontSize: 16, textAlign: 'center', marginVertical: 4 }}>{t("0 means the worst health you can imagine.")}</Text>
+                <Text style={{ fontSize: 16, textAlign: 'center', marginVertical: 4 }}>{t("100 means the best health you can imagine.")}</Text>
             </View>
             <View
                 style={{

@@ -328,30 +328,76 @@ const Welcome = ({ navigation }) => {
 						padding: moderateScale(300)
 					}}>
 
-					{/*<Avatar welcomeLeftIcon={true} source={require('../assets/notif_icon.png')} />*/}
 					<StyledFormArea>
-						{/*<Avatar resizeMode="cover" source={require('../assets/new_body.png')} />*/}
-						{/* <SubTitle welcomeHeader={true}>{t('Surgery Date')}: 19/09/2023</SubTitle> */}
 
 						<StyledButton welcome={true} onPress={() => navigation.navigate('DailyQuestion')}>
-							<Fontisto name="checkbox-active" color={primary} size={verticalScale(15)} />
-							<ButtonText welcome={true}>  {t('Daily Questionnaires')}</ButtonText>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText welcome={true}>{t('Daily Questionnaires')}</ButtonText>
+									<Fontisto name="checkbox-active" color={primary} size={verticalScale(13)} />
+								</>
+							) : (
+								<>
+									<Fontisto name="checkbox-active" color={primary} size={verticalScale(13)} />
+									<ButtonText welcome={true}>  {t('Daily Questionnaires')}</ButtonText>
+								</>
+							)}
 						</StyledButton>
+
 						<StyledButton welcome={true} onPress={() => navigation.navigate('LifeQuality1')}>
-							<Fontisto name="table-1" color={primary} size={verticalScale(15)} />
-							<ButtonText welcome={true}>  {t('Life Quality Questionnaires')}</ButtonText>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText welcome={true}>{t('Life Quality Questionnaires')}</ButtonText>
+									<Fontisto name="table-1" color={primary} size={verticalScale(13)} />
+								</>
+							) : (
+								<>
+									<Fontisto name="table-1" color={primary} size={verticalScale(13)} />
+									<ButtonText welcome={true}>  {t('Life Quality Questionnaires')}</ButtonText>
+								</>
+							)}
 						</StyledButton>
+
 						<StyledButton welcome={true} onPress={() => navigation.navigate('BodyPartSelection')}>
-							<Fontisto name="table-1" color={primary} size={verticalScale(15)} />
-							<ButtonText welcome={true}>  {t('Affected Area Specific Questionnaires')}</ButtonText>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText welcome={true}>{t('Personalized Questionnaires')}</ButtonText>
+									<Fontisto name="bar-chart" color={primary} size={verticalScale(13)} />
+								</>
+							) : (
+								<>
+									<Fontisto name="bar-chart" color={primary} size={verticalScale(13)} />
+									<ButtonText welcome={true}>  {t('Personalized Questionnaires')}</ButtonText>
+								</>
+							)}
 						</StyledButton>
-						<StyledButton onPress={() => navigation.navigate('HomeVideoExercise')} welcome={true}>
-							<Fontisto name="youtube-play" color={primary} size={verticalScale(15)} />
-							<ButtonText welcome={true}>  {t('Exercise with home videos')}</ButtonText>
+
+						<StyledButton welcome={true} onPress={() => navigation.navigate('HomeVideoExercise')}>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText welcome={true}>{t('Exercise with home videos')}</ButtonText>
+									<Fontisto name="youtube-play" color={primary} size={verticalScale(13)} />
+								</>
+							) : (
+								<>
+									<Fontisto name="youtube-play" color={primary} size={verticalScale(13)} />
+									<ButtonText welcome={true}>  {t('Exercise with home videos')}</ButtonText>
+								</>
+							)}
 						</StyledButton>
+
 						<StyledButton welcome={true} onPress={() => navigation.navigate('PersonalDetails')}>
-							<Fontisto name="person" color={primary} size={verticalScale(15)} />
-							<ButtonText welcome={true}>  {t('Personal Information')}</ButtonText>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText welcome={true}>{t('Personal Information')}</ButtonText>
+									<Fontisto name="person" color={primary} size={verticalScale(13)} />
+								</>
+							) : (
+								<>
+									<Fontisto name="person" color={primary} size={verticalScale(13)} />
+									<ButtonText welcome={true}>  {t('Personal Information')}</ButtonText>
+								</>
+							)}
 						</StyledButton>
 
 						<StyledButton
@@ -359,8 +405,19 @@ const Welcome = ({ navigation }) => {
 							style={accessToken && { backgroundColor: 'gray'}}
 							google={true}
 							onPress={() => promptAsync({ showInRecents: true })}>
-							<Fontisto name="google" color={primary} size={verticalScale(15)}    />
-							<ButtonText   google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
+							{i18n.language === 'ar' || i18n.language === 'he' ? (
+								<>
+									<ButtonText google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
+									<Fontisto name="google" color={primary} size={verticalScale(15)}/>
+								</>
+							) : (
+								<>
+									<Fontisto name="google" color={primary} size={verticalScale(15)}/>
+									<ButtonText google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>
+								</>
+							)}
+							{/*<Fontisto name="google" color={primary} size={verticalScale(15)}    />*/}
+							{/*<ButtonText   google={true}>{accessToken ? t('Connected to Google Fit') : t('Connect to Google Fit')}</ButtonText>*/}
 						</StyledButton>
 
 						<Line />

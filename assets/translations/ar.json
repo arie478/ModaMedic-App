@@ -116,6 +116,11 @@
     "What would you say the past two weeks have been like for your well being?": "كيف كان شكل الأسبوعين الماضيين لرفاهيتك؟",
     "On a scale of 0 to 100": "على مقياس من 0 إلى 100",
     "When the very worst state of health imaginable is 0 and 100 is the healthiest you can possibly imagine": "عندما تكون أسوأ حالة صحية يمكن تخيلها هي 0 و 100 هي الحالة الصحية التي يمكنك تخيلها",
+
+    "We would like to know how good or bad your health is TODAY.": "نود أن نعرف مدى جودة أو سوء صحتك اليوم.",
+    "This scale is numbered from 0 to 100.": "هذا المقياس مدرج من الرقم 0 حتى 100.",
+    "0 means the worst health you can imagine.": "0 يعني أسوأ حالة صحية يمكنك تصوّرها.",
+    "100 means the best health you can imagine.": "100 يعني أفضل حالة صحية يمكنك تصوّرها.",
     "Send answer": "أرسل الجواب",
 
     "What is the maximum level of pain you experienced today?": "ما هو الحد الأقصى لمستوى الألم الذي عانيت منه اليوم؟",
@@ -423,6 +428,7 @@
     "Office": "مكتب",
     "Physical": "بدني",
     "Nature of work": "طبيعة العمل",
-    "Select the nature of work": "حدد طبيعة العمل"
+    "Select the nature of work": "حدد طبيعة العمل",
+    "Personalized Questionnaires": "استبيانات مخصصة"
     }
   }

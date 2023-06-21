@@ -156,7 +156,7 @@ const PersonalDetails = ({ navigation }) => {
           </WelcomeContainerHeader>
         <WelcomeContainer>
           {/*<PageLogo resizeMode="cover" source={require('../assets/app_logo.png')} />*/}
-          <PageTitle welcome={true}>{t('Your Personal Information')}</PageTitle>
+          <PageTitle style={{ marginTop: -50 }} welcome={true}>{t('Your Personal Information')}</PageTitle>
           <StyledFormArea>
             <SubTitle welcomeHeader={true}>{t('Surgery Date')}: {SurgeryDate}</SubTitle>
             <StyledButton welcome={true} onPress={() => navigation.navigate('UpdatePersonalDetails')}>

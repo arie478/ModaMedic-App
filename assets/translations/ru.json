@@ -116,6 +116,11 @@
     "What would you say the past two weeks have been like for your well being?": "Как бы вы оценили последние две недели с точки зрения вашего самочувствия?",
     "On a scale of 0 to 100": "По шкале от 0 до 100",
     "When the very worst state of health imaginable is 0 and 100 is the healthiest you can possibly imagine": "При этом самое плохое состояние, которое только можно представить себе  - это 0, а 100 - самое лучшее состояние здоровья, которое только можно себе представить.",
+
+    "We would like to know how good or bad your health is TODAY.": "Мы хотели бы узнать, как бы Вы оценили состояние своего здоровья СЕГОДНЯ.",
+    "This scale is numbered from 0 to 100.": "Перед Вами шкала от 0 до 100.",
+    "0 means the worst health you can imagine.": "0 наихудшее состояние здоровья, которое можно себе представить.",
+    "100 means the best health you can imagine.": "100 означает наилучшее состояние здоровья, которое можно себе представить.",
     "Send answer": "Отправить ответ",
 
     "What is the maximum level of pain you experienced today?": "Какой максимальный уровень боли вы испытали сегодня?",
@@ -422,6 +427,7 @@
     "Office": "Офис",
     "Physical": "Физический",
     "Nature of work": "Характер работы",
-    "Select the nature of work": "Выберите характер работы"
+    "Select the nature of work": "Выберите характер работы",
+    "Personalized Questionnaires": "Персонализированные анкеты"
     }
   }
